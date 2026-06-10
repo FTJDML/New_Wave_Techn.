@@ -1,4 +1,4 @@
-name: CGI AI Retail & Consumer Services Weekstream
+name: CGI AI Retail & Consumer Services Weekstream - ACTIVE
 
 on:
   workflow_dispatch:
@@ -46,7 +46,7 @@ jobs:
           except Exception:
               ZoneInfo = None
           
-          VERSION = "v3.1-login-filters-visuals"
+          VERSION = "v4.0-active-root-latest-login-filters"
           ACCESS_CODE_HASH = "7f9aa7542a6e2d53ce2eb1cf957faedbecc10c6f9a071dfdeb290d8a4d122359"  # NT2026!
           TZ = ZoneInfo("Europe/Amsterdam") if ZoneInfo else dt.timezone.utc
           NOW = dt.datetime.now(TZ)
@@ -189,7 +189,7 @@ jobs:
               req = urllib.request.Request(
                   source["url"],
                   headers={
-                      "User-Agent": "Mozilla/5.0 (compatible; CGI-AI-Retail-Weekstream/3.1; +https://github.com/)",
+                      "User-Agent": "Mozilla/5.0 (compatible; CGI-AI-Retail-Weekstream/4.0; +https://github.com/)",
                       "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml, */*",
                   },
               )
@@ -526,7 +526,7 @@ jobs:
               </section>
           
               {errors_html}
-              <footer>CGI AI & Retail Weekstream · {h(VERSION)} · gegenereerd op {h(NOW.isoformat())}</footer>
+              <footer>CGI AI & Retail Weekstream · {h(VERSION)} · root en latest zijn beide gepubliceerd · gegenereerd op {h(NOW.isoformat())}</footer>
             </main>
             <script>
               const ACCESS_HASH = '{ACCESS_CODE_HASH}';
@@ -585,6 +585,9 @@ jobs:
           }
           for target in (LATEST / "status.json", ARCHIVE / "status.json", SITE / "status.json"):
               target.write_text(json.dumps(status, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+          check_text = f"{VERSION}\nGenerated: {NOW.isoformat()}\nArticle count: {len(articles)}\nRoot, latest and archive were written in this workflow.\n"
+          for target in (LATEST / "DEPLOYMENT_CHECK.txt", ARCHIVE / "DEPLOYMENT_CHECK.txt", SITE / "DEPLOYMENT_CHECK.txt"):
+              target.write_text(check_text, encoding="utf-8")
           PY
 
       - name: Configureer GitHub Pages
