@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 20% 98%;
+  --foreground: 222 20% 14%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 20% 14%;
+  --primary: 210 60% 30%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 20% 92%;
+  --secondary-foreground: 222 20% 14%;
+  --muted: 210 20% 94%;
+  --muted-foreground: 215 15% 40%;
+  --accent: 174 45% 32%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 65% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 145 45% 30%;
+  --success-foreground: 0 0% 100%;
+  --border: 214 20% 85%;
+  --input: 214 20% 85%;
+  --ring: 210 60% 40%;
+  --radius: 0.5rem;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: "Segoe UI", "Inter", system-ui, -apple-system, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+:focus-visible {
+  outline: 3px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 var(--radius) 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* Print styles: only the element marked data-print-root is shown when printing */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  [data-print-root],
+  [data-print-root] * {
+    visibility: visible;
+  }
+
+  [data-print-root] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .print-page-break {
+    page-break-before: always;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid;
+  }
+}
