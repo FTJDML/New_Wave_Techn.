@@ -1,0 +1,72 @@
+{
+  "patch": "Claude Code Action Content and Provider Patch v2.2",
+  "branch": "claude/new-session-t1nhhu",
+  "added": {
+    "vendors": ["VEN-MENDIX", "VEN-STIBO"],
+    "components": ["CMP-MENDIX", "CMP-STEP-MDM"],
+    "commercial_relationships": ["REL-025", "REL-026"],
+    "evidence_sources": [
+      "SRC-ACTION-JOB-MARKETING-FORMAT",
+      "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE",
+      "SRC-MENDIX-BNL-MEETUP-2023",
+      "SRC-STIBO-STEP-PLATFORM"
+    ],
+    "claims": [
+      "CLM-0195", "CLM-0196", "CLM-0197", "CLM-0198", "CLM-0199", "CLM-0200", "CLM-0201"
+    ],
+    "stakeholders": [
+      "STK-COMMERCIAL-PROCESS-TEAM", "STK-GINO-RAMCHARAN", "STK-INGRID-CAMPMAN", "STK-PATRICK-WERKMAN"
+    ],
+    "ownership_links": [
+      "OWN-0097", "OWN-0098", "OWN-0099", "OWN-0100", "OWN-0101", "OWN-0102", "OWN-0103", "OWN-0104"
+    ],
+    "research_gaps": [
+      "GAP-065", "GAP-066", "GAP-067", "GAP-068", "GAP-069", "GAP-070", "GAP-071", "GAP-072", "GAP-073"
+    ],
+    "research_tasks": [
+      "TASK-065", "TASK-066", "TASK-067", "TASK-068", "TASK-069", "TASK-070", "TASK-071", "TASK-072", "TASK-073"
+    ],
+    "logo_registry_entries": [
+      "VEN-AWS", "VEN-CAPGEMINI", "VEN-CHANNABLE", "VEN-CLOUDFLARE", "VEN-DAIKIN", "VEN-ERECRUITER",
+      "VEN-FASTLY", "VEN-HOTJAR", "VEN-MENDIX", "VEN-MOPINION", "VEN-PLANON", "VEN-PUBLITAS",
+      "VEN-QARETAIL", "VEN-RETAILSONAR", "VEN-SMARTLY", "VEN-SQUADRA", "VEN-STAFFLY", "VEN-STIBO",
+      "VEN-TWILIO", "VEN-UBERALL", "VEN-USERCENTRICS"
+    ],
+    "total_architecture_nodes": ["mendix", "step-mdm"],
+    "total_architecture_edges": ["e30", "e31"],
+    "deep_dive_view_node_groups": {
+      "erp-supply": ["es-product-data (group)", "es-step-mdm", "es-mendix", "es-powertext", "es-contentstack-ref", "es-retailsonar"],
+      "digital-commerce": ["dc-step-mdm", "dc-mendix", "dc-product-data (group)", "dc-satellites (group)"],
+      "data-intelligence": ["di-bi-feedback (group)", "di-capgemini"],
+      "people-service": ["ps-recruitment (group)"],
+      "foundation-security": ["fs-observed (group)", "fs-facility (group)"]
+    },
+    "pages_and_routes": ["/architecture/providers (ProvidersPage)"],
+    "types": ["ProviderRole"]
+  },
+  "updated": {
+    "research_gaps": {
+      "GAP-020": "resolved to CMP-STEP-MDM (partial — 3 follow-up gaps retained: GAP-065/066/067)",
+      "GAP-058": "target_stakeholders_or_sources populated",
+      "GAP-060": "target_stakeholders_or_sources populated",
+      "GAP-068": "target_stakeholders_or_sources populated",
+      "GAP-069": "target_stakeholders_or_sources populated",
+      "GAP-070": "target_stakeholders_or_sources populated",
+      "GAP-071": "target_stakeholders_or_sources populated",
+      "GAP-072": "target_stakeholders_or_sources populated",
+      "GAP-073": "target_stakeholders_or_sources populated"
+    },
+    "commercial_relationships": {
+      "REL-001_through_REL-024": "added provider_role, supported_capability_ids, data_classification fields to all 24 existing records"
+    },
+    "stakeholders": {
+      "STK-RICHARD-LENDVAI": "added a private, RESTRICTED note (Mendix statement) — never exposed on any public page"
+    },
+    "types_catalogue_ts": [
+      "CommercialRelationship: added provider_role, supported_capability_ids, data_classification"
+    ]
+  },
+  "resolved_gaps": {
+    "GAP-020": "CMP-STEP-MDM"
+  }
+}
