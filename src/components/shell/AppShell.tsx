@@ -1,6 +1,7 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { SearchPalette } from '@/components/search/SearchPalette';
+import { useAuth } from '@/auth/AuthContext';
 import styles from './AppShell.module.css';
 
 const NAV_ITEMS: ReadonlyArray<{ to: string; label: string }> = [
@@ -10,10 +11,14 @@ const NAV_ITEMS: ReadonlyArray<{ to: string; label: string }> = [
   { to: '/evidence', label: 'Evidence' },
   { to: '/to-find', label: 'TO FIND' },
   { to: '/research', label: 'Research' },
+  { to: '/stakeholders', label: 'Stakeholders' },
+  { to: '/admin', label: 'Admin' },
 ];
 
 export function AppShell() {
   const [searchOpen, setSearchOpen] = useState(false);
+  const { isConfigured, user, signOut } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -48,6 +53,26 @@ export function AppShell() {
           Search
           <span className={styles.kbd}>⌘K</span>
         </button>
+        {isConfigured ? (
+          user ? (
+            <div className={styles.authStatus}>
+              <span className={styles.authEmail}>{user.email}</span>
+              <button
+                type="button"
+                className={styles.authButton}
+                onClick={() => {
+                  void signOut();
+                }}
+              >
+                Sign out
+              </button>
+            </div>
+          ) : (
+            <button type="button" className={styles.authButton} onClick={() => navigate('/sign-in')}>
+              Sign in
+            </button>
+          )
+        ) : null}
       </div>
       <div className={styles.outletWrapper}>
         <Outlet />

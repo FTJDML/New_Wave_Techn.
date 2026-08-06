@@ -75,9 +75,12 @@ test.describe('Privacy — no stakeholder or CGI identity ever renders', () => {
     }
   });
 
-  test('no stakeholders, ownership or CGI navigation entry point exists', async ({ page }) => {
+  test('no CGI navigation entry point exists', async ({ page }) => {
+    // Phase 5 deliberately adds a "Stakeholders" nav link (gated behind auth — see
+    // tests/e2e/auth-unconfigured.spec.ts and auth-configured.spec.ts for its own coverage),
+    // so that link is no longer forbidden here. CGI-relationship data still has no
+    // access-controlled home (docs/PHASE5_REVIEW_REPORT.md §5) and stays off every nav.
     await page.goto('/architecture');
-    await expect(page.getByRole('link', { name: /stakeholder/i })).toHaveCount(0);
     await expect(page.getByRole('link', { name: /cgi/i })).toHaveCount(0);
   });
 });

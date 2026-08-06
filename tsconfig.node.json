@@ -31,6 +31,7 @@
     "scripts/**/*.ts",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "src/vite-env.d.ts"
+    "src/vite-env.d.ts",
+    "supabase/**/*.ts"
   ]
 }

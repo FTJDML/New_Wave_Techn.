@@ -1,0 +1,66 @@
+.page {
+  padding: 20px 24px 40px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.panel {
+  max-width: 560px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 18px 20px;
+}
+
+.description {
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+.description code {
+  font-size: 12px;
+  background: var(--color-group-bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.exportButton {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--color-ink);
+  border: none;
+  border-radius: 6px;
+  padding: 9px 16px;
+  cursor: pointer;
+}
+
+.exportButton:hover {
+  opacity: 0.85;
+}
+
+.exportButton:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.error {
+  margin-top: 12px;
+  font-size: 12.5px;
+  color: var(--color-gap-border);
+}
+
+.success {
+  margin-top: 12px;
+  font-size: 12.5px;
+  color: var(--color-status-current);
+}
+
+.success code {
+  font-size: 12px;
+  background: var(--color-group-bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+}

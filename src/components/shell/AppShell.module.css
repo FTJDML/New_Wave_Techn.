@@ -75,6 +75,33 @@
   color: #b7b7b2;
 }
 
+.authStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.authEmail {
+  font-size: 11.5px;
+  color: #b7b7b2;
+}
+
+.authButton {
+  font-size: 12px;
+  font-weight: 600;
+  color: #d8d8d3;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.authButton:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
 .content {
   height: 100%;
   display: flex;

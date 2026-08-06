@@ -1,0 +1,50 @@
+.notice {
+  max-width: 520px;
+  margin: 48px auto;
+  padding: 20px 22px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 8px;
+  background: var(--color-group-bg);
+  font-size: 13px;
+  color: var(--color-ink);
+}
+
+.noticeTitle {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.noticeBody {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+.noticeBody code {
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.signInWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 64px 16px;
+}
+
+.signInCard {
+  width: 100%;
+  max-width: 360px;
+}
+
+.signInTitle {
+  margin: 0 0 4px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.spacedTop {
+  margin-top: 10px;
+}
