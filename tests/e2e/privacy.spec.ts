@@ -22,7 +22,19 @@ const FORBIDDEN_NAMES = [
   ...frc.cgi_relationships.map((c) => c.cgi_contact_name).filter((n): n is string => Boolean(n) && n !== 'User' && n !== 'Floris'),
 ].filter(Boolean);
 
-const ROUTES_TO_CHECK = ['/architecture', '/systems', '/suppliers', '/evidence', '/to-find'];
+const ROUTES_TO_CHECK = [
+  '/architecture',
+  '/architecture/store',
+  '/architecture/digital',
+  '/architecture/erp-supply',
+  '/architecture/data',
+  '/architecture/people-service',
+  '/architecture/foundation',
+  '/systems',
+  '/suppliers',
+  '/evidence',
+  '/to-find',
+];
 
 test.describe('Privacy — no stakeholder or CGI identity ever renders', () => {
   for (const route of ROUTES_TO_CHECK) {

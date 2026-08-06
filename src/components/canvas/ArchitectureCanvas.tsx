@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react';
 import { toPng } from 'html-to-image';
-import { totalArchitectureView } from '@/data/curatedView';
+import type { ArchitectureView } from '@/types/architecture';
 import { useCamera } from '@/hooks/useCamera';
 import { useHighlight } from '@/hooks/useHighlight';
 import { GroupLayer } from './GroupLayer';
@@ -10,11 +10,13 @@ import { ZoomControls } from '@/components/shell/ZoomControls';
 import styles from './ArchitectureCanvas.module.css';
 
 interface ArchitectureCanvasProps {
+  readonly view: ArchitectureView;
   readonly onSelectNode: (id: string) => void;
+  readonly exportFileName?: string;
 }
 
-export function ArchitectureCanvas({ onSelectNode }: ArchitectureCanvasProps) {
-  const { canvas, groups, nodes, edges } = totalArchitectureView;
+export function ArchitectureCanvas({ view, onSelectNode, exportFileName = 'action-architecture.png' }: ArchitectureCanvasProps) {
+  const { canvas, groups, nodes, edges } = view;
   const containerRef = useRef<HTMLDivElement>(null);
   const layerRef = useRef<HTMLDivElement>(null);
   const { camera, reset, zoomIn, zoomOut, isPanning, handlers } = useCamera(containerRef, {
@@ -23,14 +25,14 @@ export function ArchitectureCanvas({ onSelectNode }: ArchitectureCanvasProps) {
     minScale: canvas.minScale,
     maxScale: canvas.maxScale,
   });
-  const highlight = useHighlight();
+  const highlight = useHighlight(edges);
 
   const exportPng = useCallback(async () => {
     const layer = layerRef.current;
     if (!layer) return;
-    // Exports the full 1920x1080 poster at native resolution regardless of the current
-    // pan/zoom camera — `style.transform: 'none'` overrides the clone html-to-image
-    // rasterizes, so the export is always the complete, untransformed architecture.
+    // Exports the full poster at native resolution regardless of the current pan/zoom
+    // camera — `style.transform: 'none'` overrides the clone html-to-image rasterizes,
+    // so the export is always the complete, untransformed architecture.
     const dataUrl = await toPng(layer, {
       width: canvas.width,
       height: canvas.height,
@@ -39,10 +41,10 @@ export function ArchitectureCanvas({ onSelectNode }: ArchitectureCanvasProps) {
       pixelRatio: 2,
     });
     const link = document.createElement('a');
-    link.download = 'action-total-architecture.png';
+    link.download = exportFileName;
     link.href = dataUrl;
     link.click();
-  }, [canvas.width, canvas.height, canvas.background]);
+  }, [canvas.width, canvas.height, canvas.background, exportFileName]);
 
   return (
     <div

@@ -44,6 +44,25 @@ const LOGO_STRATEGY_OVERRIDES: Readonly<Record<string, LogoDefinition>> = {
   'VEN-SERVICENOW': { strategy: 'wordmark', text: 'ServiceNow' },
 };
 
+/**
+ * Vendors that appear as focus systems in the Phase 3 domain deep dives but never in the
+ * Total Architecture, so the raw curated registry (authored for the Total view only)
+ * never declared them. Same audit process as Phase 0 §4: simple-icons where a real mark
+ * resolves, a typographic wordmark otherwise — see docs/PHASE3_REVIEW_REPORT.md.
+ */
+const DEEP_DIVE_LOGO_ADDITIONS: Readonly<Record<string, LogoDefinition>> = {
+  'VEN-ELO': { strategy: 'wordmark', text: 'Elo' },
+  'VEN-VERCEL': { strategy: 'simple-icons', slug: 'vercel' },
+  'VEN-META': { strategy: 'simple-icons', slug: 'meta' },
+  'VEN-SALESFORCE': { strategy: 'wordmark', text: 'Salesforce' },
+  'VEN-ANAPLAN': { strategy: 'wordmark', text: 'Anaplan' },
+  'VEN-GOOGLE': { strategy: 'simple-icons', slug: 'google' },
+  'VEN-KRONOS': { strategy: 'wordmark', text: 'Kronos' },
+  'VEN-SNOWPLOW': { strategy: 'wordmark', text: 'Snowplow' },
+  'VEN-ALGOLIA': { strategy: 'simple-icons', slug: 'algolia' },
+  'VEN-CLOUDINARY': { strategy: 'simple-icons', slug: 'cloudinary' },
+};
+
 function applyEdgeOverrides(edges: readonly ArchitectureViewEdge[]): readonly ArchitectureViewEdge[] {
   return edges.map((edge) => {
     const override = EDGE_WAYPOINT_OVERRIDES[edge.id];
@@ -57,7 +76,7 @@ function buildView(): ArchitectureView {
 }
 
 function buildLogoRegistry(): LogoRegistry {
-  return { ...rawBundle.curatedArchitecture.logoRegistry, ...LOGO_STRATEGY_OVERRIDES };
+  return { ...rawBundle.curatedArchitecture.logoRegistry, ...LOGO_STRATEGY_OVERRIDES, ...DEEP_DIVE_LOGO_ADDITIONS };
 }
 
 export const totalArchitectureView: ArchitectureView = buildView();

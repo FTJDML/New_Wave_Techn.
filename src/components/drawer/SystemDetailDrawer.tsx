@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import type { Component } from '@/types/catalogue';
 import {
   getDomain,
@@ -13,6 +14,7 @@ import {
   getGapsForComponent,
   components,
 } from '@/data/fullCatalogue';
+import { getViewAppearances } from '@/data/viewIndex';
 import { VendorLogo } from '@/components/logo/VendorLogo';
 import { humanize, formatDuration } from '@/lib/formatting';
 import styles from './SystemDetailDrawer.module.css';
@@ -54,6 +56,7 @@ export function SystemDetailDrawer({ component, onClose, onSelectComponent }: Sy
   const observations = getTechnicalObservationsForComponent(component.component_id);
   const gaps = getGapsForComponent(component.component_id);
   const duration = formatDuration(component.relationship_duration_years_json, component.relationship_start_precision);
+  const viewAppearances = getViewAppearances(component.component_id);
 
   return (
     <>
@@ -110,6 +113,21 @@ export function SystemDetailDrawer({ component, onClose, onSelectComponent }: Sy
           <>
             <p className={styles.sectionTitle}>Description</p>
             <p className={styles.description}>{component.description}</p>
+          </>
+        ) : null}
+
+        {viewAppearances.length > 0 ? (
+          <>
+            <p className={styles.sectionTitle}>Shown in architecture views</p>
+            <ul className={styles.list}>
+              {viewAppearances.map((a) => (
+                <li key={`${a.routePath}-${a.nodeId}`} className={styles.listItem}>
+                  <Link className={styles.link} to={`${a.routePath}?node=${a.nodeId}`}>
+                    {a.viewTitle}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </>
         ) : null}
 

@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import type { ResearchGap } from '@/types/catalogue';
 import { getDomain, getTasksForGap, getComponent } from '@/data/fullCatalogue';
+import { getViewAppearances } from '@/data/viewIndex';
 import { humanize } from '@/lib/formatting';
 import { priorityColor } from '@/lib/catalogueStatusMeta';
 import styles from './SystemDetailDrawer.module.css';
@@ -34,6 +36,7 @@ export function GapDetailDrawer({ gap, onClose, onSelectComponent }: GapDetailDr
     .map(getComponent)
     .filter((c) => c !== undefined);
   const resolvedComponent = gap.resolved_component_id ? getComponent(gap.resolved_component_id) : undefined;
+  const viewAppearances = getViewAppearances(gap.gap_component_id);
 
   return (
     <>
@@ -56,6 +59,21 @@ export function GapDetailDrawer({ gap, onClose, onSelectComponent }: GapDetailDr
           <span className={styles.badge}>{humanize(gap.gap_status)}</span>
           {gap.impact_area ? <span className={styles.badge}>{humanize(gap.impact_area)}</span> : null}
         </div>
+
+        {viewAppearances.length > 0 ? (
+          <>
+            <p className={styles.sectionTitle}>Shown in architecture views</p>
+            <ul className={styles.list}>
+              {viewAppearances.map((a) => (
+                <li key={`${a.routePath}-${a.nodeId}`} className={styles.listItem}>
+                  <Link className={styles.link} to={`${a.routePath}?node=${a.nodeId}`}>
+                    {a.viewTitle}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
 
         <p className={styles.sectionTitle}>Why essential</p>
         <p className={styles.description}>{gap.why_essential}</p>

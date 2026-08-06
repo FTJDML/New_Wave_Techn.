@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { totalArchitectureView } from '@/data/curatedView';
+import type { ArchitectureViewEdge } from '@/types/architecture';
 import { buildNeighbourGraph } from '@/lib/neighbors';
 
 export interface HighlightState {
@@ -11,9 +11,9 @@ export interface HighlightState {
   readonly isEdgeEmphasised: (edgeId: string) => boolean;
 }
 
-/** First-degree-neighbour hover/focus highlighting, computed once from the static edge list. */
-export function useHighlight(): HighlightState {
-  const graph = useMemo(() => buildNeighbourGraph(totalArchitectureView.edges), []);
+/** First-degree-neighbour hover/focus highlighting, computed once from the given edge list. */
+export function useHighlight(edges: readonly ArchitectureViewEdge[]): HighlightState {
+  const graph = useMemo(() => buildNeighbourGraph(edges), [edges]);
   const [activeNodeId, setActiveNodeId] = useState<string | null>(null);
 
   const relatedNodes = activeNodeId ? graph.neighbourNodes.get(activeNodeId) : undefined;

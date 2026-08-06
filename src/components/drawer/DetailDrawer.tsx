@@ -1,17 +1,20 @@
 import { useEffect } from 'react';
-import { totalArchitectureView } from '@/data/curatedView';
+import { useNavigate } from 'react-router-dom';
+import type { ArchitectureViewNode } from '@/types/architecture';
 import { resolveCatalogueRefs } from '@/data/catalogueIndex';
 import { VendorLogo } from '@/components/logo/VendorLogo';
 import { statusMeta, evidenceMeta } from '@/components/nodes/statusMeta';
 import styles from './DetailDrawer.module.css';
 
 interface DetailDrawerProps {
+  readonly nodes: readonly ArchitectureViewNode[];
   readonly nodeId: string | null;
   readonly onClose: () => void;
 }
 
-export function DetailDrawer({ nodeId, onClose }: DetailDrawerProps) {
-  const node = nodeId ? totalArchitectureView.nodes.find((n) => n.id === nodeId) : undefined;
+export function DetailDrawer({ nodes, nodeId, onClose }: DetailDrawerProps) {
+  const node = nodeId ? nodes.find((n) => n.id === nodeId) : undefined;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!node) return;
@@ -80,7 +83,13 @@ export function DetailDrawer({ nodeId, onClose }: DetailDrawerProps) {
             <ul className={styles.refList}>
               {catalogueRecords.map((record) => (
                 <li key={record.id} className={styles.refItem}>
-                  {record.displayName}
+                  <button
+                    type="button"
+                    className={styles.refLinkButton}
+                    onClick={() => navigate(`/systems/${record.id}`)}
+                  >
+                    {record.displayName}
+                  </button>
                   {record.vendorName ? <div className={styles.refVendor}>{record.vendorName}</div> : null}
                 </li>
               ))}

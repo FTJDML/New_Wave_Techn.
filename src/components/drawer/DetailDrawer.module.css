@@ -99,6 +99,21 @@
   font-size: 11.5px;
 }
 
+.refLinkButton {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--color-status-target);
+  cursor: pointer;
+  text-align: left;
+}
+
+.refLinkButton:hover {
+  text-decoration: underline;
+}
+
 .overlay {
   position: fixed;
   inset: 0;
