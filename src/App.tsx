@@ -6,6 +6,7 @@ import { SystemsPage } from '@/pages/SystemsPage';
 import { SuppliersPage } from '@/pages/SuppliersPage';
 import { EvidencePage } from '@/pages/EvidencePage';
 import { ToFindPage } from '@/pages/ToFindPage';
+import { ResearchPage } from '@/pages/ResearchPage';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="evidence/:sourceId" element={<EvidencePage />} />
           <Route path="to-find" element={<ToFindPage />} />
           <Route path="to-find/:gapId" element={<ToFindPage />} />
+          <Route path="research" element={<ResearchPage />} />
           <Route path="*" element={<Navigate to="/architecture" replace />} />
         </Route>
       </Routes>

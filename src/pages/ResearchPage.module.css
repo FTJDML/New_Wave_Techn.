@@ -1,0 +1,96 @@
+.textarea {
+  width: 100%;
+  min-height: 140px;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 12px;
+  padding: 8px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.previewTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 14px;
+}
+
+.previewTable th,
+.previewTable td {
+  border: 1px solid var(--color-card-border);
+  padding: 5px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.previewTable th {
+  background: var(--color-group-bg);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.rowOk {
+  color: var(--color-status-current);
+  font-weight: 700;
+}
+
+.rowError {
+  color: var(--color-gap-border);
+  font-weight: 700;
+}
+
+.errorText {
+  font-size: 11px;
+  color: var(--color-gap-border);
+}
+
+.summaryBanner {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: var(--color-group-bg);
+  border: 1px solid var(--color-card-border);
+  font-size: 12.5px;
+}
+
+.auditTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.auditTable th,
+.auditTable td {
+  border-bottom: 1px solid var(--color-card-border);
+  padding: 7px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.auditTable th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-muted);
+}
+
+.auditDetails {
+  margin-top: 4px;
+}
+
+.auditDetails summary {
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--color-status-target);
+}
+
+.auditDiff {
+  font-size: 10.5px;
+  background: #f7f7f5;
+  padding: 6px;
+  border-radius: 4px;
+  overflow-x: auto;
+  max-width: 420px;
+}

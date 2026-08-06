@@ -4,7 +4,11 @@ import { PageHeader } from '@/components/shell/PageHeader';
 import { FilterPanel, type FilterFieldConfig } from '@/components/table/FilterPanel';
 import { DataTable, type DataTableColumn } from '@/components/table/DataTable';
 import { EvidenceSourceDrawer } from '@/components/drawer/EvidenceSourceDrawer';
-import { evidenceSources, claims, technicalObservations, getEvidenceSource, getComponent } from '@/data/fullCatalogue';
+import { AddSourceForm } from '@/components/forms/AddSourceForm';
+import { AddClaimForm } from '@/components/forms/AddClaimForm';
+import { technicalObservations, getComponent } from '@/data/fullCatalogue';
+import { mergedSources, mergedClaims } from '@/research/store';
+import { useResearchStoreVersion } from '@/research/useResearchStore';
 import type { EvidenceSource, Claim, TechnicalObservation } from '@/types/catalogue';
 import { humanize } from '@/lib/formatting';
 import { evidenceStatusColor } from '@/lib/catalogueStatusMeta';
@@ -17,9 +21,13 @@ function uniqueSorted(values: readonly string[]): string[] {
 }
 
 export function EvidencePage() {
+  useResearchStoreVersion();
   const navigate = useNavigate();
   const { sourceId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const evidenceSources = mergedSources();
+  const claims = mergedClaims();
 
   const tab = (searchParams.get('tab') as Tab) || 'sources';
   const search = searchParams.get('q') ?? '';
@@ -80,6 +88,7 @@ export function EvidencePage() {
     { key: 'status', label: 'Status', sortValue: (c) => c.claim_status, render: (c) => humanize(c.claim_status) },
     { key: 'confidence', label: 'Confidence', sortValue: (c) => c.confidence_score, render: (c) => c.confidence_score },
     { key: 'checked', label: 'Checked', sortValue: (c) => c.date_checked, render: (c) => c.date_checked || 'Unknown' },
+    { key: 'classification', label: 'Classification', sortValue: (c) => c.data_classification, render: (c) => humanize(c.data_classification) },
   ];
 
   const observationColumns: DataTableColumn<TechnicalObservation>[] = [
@@ -122,11 +131,11 @@ export function EvidencePage() {
 
   const sourceFilterFields: FilterFieldConfig[] = useMemo(
     () => [{ key: 'type', label: 'Source type', options: uniqueSorted(evidenceSources.map((s) => s.source_type)).map((v) => ({ value: v, label: humanize(v) })) }],
-    [],
+    [evidenceSources],
   );
   const claimFilterFields: FilterFieldConfig[] = useMemo(
     () => [{ key: 'type', label: 'Claim status', options: uniqueSorted(claims.map((c) => c.claim_status)).map((v) => ({ value: v, label: humanize(v) })) }],
-    [],
+    [claims],
   );
   const observationFilterFields: FilterFieldConfig[] = useMemo(
     () => [{ key: 'type', label: 'Evidence status', options: uniqueSorted(technicalObservations.map((o) => o.evidence_status)).map((v) => ({ value: v, label: humanize(v) })) }],
@@ -140,7 +149,7 @@ export function EvidencePage() {
       if (q && !`${s.source_title} ${s.publisher}`.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [search, typeFilter]);
+  }, [search, typeFilter, evidenceSources]);
 
   const filteredClaims = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -149,7 +158,7 @@ export function EvidencePage() {
       if (q && !c.value.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [search, typeFilter]);
+  }, [search, typeFilter, claims]);
 
   const filteredObservations = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -160,7 +169,7 @@ export function EvidencePage() {
     });
   }, [search, typeFilter]);
 
-  const selectedSource = sourceId ? getEvidenceSource(sourceId) : undefined;
+  const selectedSource = sourceId ? evidenceSources.find((s) => s.source_id === sourceId) : undefined;
 
   return (
     <div className={pageStyles.page}>
@@ -183,6 +192,7 @@ export function EvidencePage() {
 
         {tab === 'sources' ? (
           <>
+            <AddSourceForm onSaved={(id) => navigate(`/evidence/${id}?${searchParams.toString()}`)} />
             <FilterPanel
               searchValue={search}
               onSearchChange={(v) => setParam('q', v)}
@@ -199,6 +209,7 @@ export function EvidencePage() {
 
         {tab === 'claims' ? (
           <>
+            <AddClaimForm />
             <FilterPanel
               searchValue={search}
               onSearchChange={(v) => setParam('q', v)}

@@ -1,8 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { EvidenceSource } from '@/types/catalogue';
-import { getClaimsCitingSource, getComponent } from '@/data/fullCatalogue';
+import { getComponent } from '@/data/fullCatalogue';
+import { mergedClaims } from '@/research/store';
+import { useResearchStoreVersion } from '@/research/useResearchStore';
+import { AddSourceForm } from '@/components/forms/AddSourceForm';
 import { humanize } from '@/lib/formatting';
 import styles from './SystemDetailDrawer.module.css';
+import formStyles from '@/components/forms/forms.module.css';
 
 interface EvidenceSourceDrawerProps {
   readonly source: EvidenceSource;
@@ -11,6 +15,9 @@ interface EvidenceSourceDrawerProps {
 }
 
 export function EvidenceSourceDrawer({ source, onClose, onSelectComponent }: EvidenceSourceDrawerProps) {
+  useResearchStoreVersion();
+  const [editing, setEditing] = useState(false);
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
@@ -19,7 +26,7 @@ export function EvidenceSourceDrawer({ source, onClose, onSelectComponent }: Evi
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  const citingClaims = getClaimsCitingSource(source.source_id);
+  const citingClaims = mergedClaims().filter((c) => c.source_ids.includes(source.source_id));
 
   return (
     <>
@@ -39,6 +46,17 @@ export function EvidenceSourceDrawer({ source, onClose, onSelectComponent }: Evi
           <span className={styles.badge}>{humanize(source.source_type)}</span>
           {source.reliability_rating_1_5 ? <span className={styles.badge}>Reliability {source.reliability_rating_1_5}/5</span> : null}
         </div>
+
+        {editing ? (
+          <>
+            <p className={styles.sectionTitle}>Edit source</p>
+            <AddSourceForm existing={source} onSaved={() => setEditing(false)} />
+          </>
+        ) : (
+          <button type="button" className={formStyles.toggleButton} onClick={() => setEditing(true)} data-testid="edit-source-toggle">
+            Edit source
+          </button>
+        )}
 
         <p className={styles.sectionTitle}>Details</p>
         <div className={styles.factGrid}>

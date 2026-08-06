@@ -1,8 +1,13 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import type { ResearchGap } from '@/types/catalogue';
-import { getDomain, getTasksForGap, getComponent } from '@/data/fullCatalogue';
+import { getDomain, getComponent } from '@/data/fullCatalogue';
 import { getViewAppearances } from '@/data/viewIndex';
+import { mergedTasksForGap } from '@/research/store';
+import { useResearchStoreVersion } from '@/research/useResearchStore';
+import { GapStatusControl } from '@/components/forms/GapStatusControl';
+import { AddTaskForm } from '@/components/forms/AddTaskForm';
+import { OwnershipSection } from '@/components/forms/OwnershipSection';
 import { humanize } from '@/lib/formatting';
 import { priorityColor } from '@/lib/catalogueStatusMeta';
 import styles from './SystemDetailDrawer.module.css';
@@ -19,6 +24,7 @@ interface GapDetailDrawerProps {
  * phase exists (see docs/IMPLEMENTATION_AUDIT.md-equivalent privacy note for Phase 2).
  */
 export function GapDetailDrawer({ gap, onClose, onSelectComponent }: GapDetailDrawerProps) {
+  useResearchStoreVersion();
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
@@ -28,7 +34,7 @@ export function GapDetailDrawer({ gap, onClose, onSelectComponent }: GapDetailDr
   }, [onClose]);
 
   const domain = getDomain(gap.domain_id);
-  const tasks = getTasksForGap(gap.gap_id);
+  const tasks = mergedTasksForGap(gap.gap_id);
   // Exclude the gap's own placeholder component — linked_component_ids includes it to mark
   // "which architecture object this gap concerns", which reads as a confusing self-link here.
   const linkedComponents = gap.linked_component_ids
@@ -59,6 +65,9 @@ export function GapDetailDrawer({ gap, onClose, onSelectComponent }: GapDetailDr
           <span className={styles.badge}>{humanize(gap.gap_status)}</span>
           {gap.impact_area ? <span className={styles.badge}>{humanize(gap.impact_area)}</span> : null}
         </div>
+
+        <p className={styles.sectionTitle}>Status</p>
+        <GapStatusControl gap={gap} />
 
         {viewAppearances.length > 0 ? (
           <>
@@ -107,21 +116,26 @@ export function GapDetailDrawer({ gap, onClose, onSelectComponent }: GapDetailDr
           </>
         ) : null}
 
+        <p className={styles.sectionTitle}>Research tasks</p>
         {tasks.length > 0 ? (
-          <>
-            <p className={styles.sectionTitle}>Research tasks</p>
-            <ul className={styles.list}>
-              {tasks.map((t) => (
-                <li key={t.task_id} className={styles.listItem}>
-                  <div className={styles.listItemTitle}>{t.task_title}</div>
-                  <div className={styles.listItemMeta}>
-                    {humanize(t.status)} · {t.priority}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : null}
+          <ul className={styles.list}>
+            {tasks.map((t) => (
+              <li key={t.task_id} className={styles.listItem}>
+                <div className={styles.listItemTitle}>{t.task_title}</div>
+                <div className={styles.listItemMeta}>
+                  {humanize(t.status)} · {t.priority || 'No priority set'}
+                  {t.next_action ? ` · ${t.next_action}` : ''}
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className={styles.emptySection}>No research tasks recorded.</p>
+        )}
+        <AddTaskForm gapId={gap.gap_id} />
+
+        <p className={styles.sectionTitle}>Ownership hypotheses</p>
+        <OwnershipSection objectType="GAP" objectId={gap.gap_id} />
 
         {linkedComponents.length > 0 ? (
           <>

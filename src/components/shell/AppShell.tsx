@@ -9,6 +9,7 @@ const NAV_ITEMS: ReadonlyArray<{ to: string; label: string }> = [
   { to: '/suppliers', label: 'Suppliers' },
   { to: '/evidence', label: 'Evidence' },
   { to: '/to-find', label: 'TO FIND' },
+  { to: '/research', label: 'Research' },
 ];
 
 export function AppShell() {

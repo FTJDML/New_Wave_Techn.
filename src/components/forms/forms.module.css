@@ -1,0 +1,164 @@
+.panel {
+  border: 1px solid var(--color-card-border);
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.toggleButton {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-status-target);
+  background: none;
+  border: 1px solid var(--color-status-target);
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.toggleButton:hover {
+  background: var(--color-group-bg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fieldWide {
+  grid-column: 1 / -1;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+}
+
+.input,
+.select,
+.textarea {
+  font-size: 12.5px;
+  font-family: inherit;
+  padding: 6px 8px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 4px;
+  color: var(--color-ink);
+  background: #ffffff;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 54px;
+}
+
+.checkboxRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 110px;
+  overflow-y: auto;
+  border: 1px solid var(--color-card-border);
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  color: var(--color-ink);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.primaryButton {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--color-ink);
+  border: none;
+  border-radius: 6px;
+  padding: 7px 14px;
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  opacity: 0.85;
+}
+
+.secondaryButton {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  background: none;
+  border: 1px solid var(--color-card-border);
+  border-radius: 6px;
+  padding: 7px 14px;
+  cursor: pointer;
+}
+
+.secondaryButton:hover {
+  background: var(--color-group-bg);
+}
+
+.errorList {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  background: var(--color-gap-bg);
+  border: 1px solid var(--color-gap-border);
+  border-radius: 4px;
+  list-style: none;
+}
+
+.errorItem {
+  font-size: 11.5px;
+  color: var(--color-gap-border);
+}
+
+.successNote {
+  font-size: 11.5px;
+  color: var(--color-status-current);
+  margin-top: 10px;
+}
+
+.helpText {
+  font-size: 11px;
+  color: var(--color-ink-muted);
+  font-style: italic;
+}
+
+.spacedTop {
+  margin-top: 10px;
+}
+
+.ownershipList {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ownershipItem {
+  font-size: 12px;
+  color: var(--color-ink);
+  border: 1px solid var(--color-card-border);
+  border-radius: 4px;
+  padding: 6px 10px;
+}

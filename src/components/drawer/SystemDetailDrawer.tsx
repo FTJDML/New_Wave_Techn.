@@ -8,13 +8,15 @@ import {
   getOutgoingEdges,
   getIncomingEdges,
   getProgrammesForComponent,
-  getClaimsForSubject,
-  getEvidenceSources,
   getTechnicalObservationsForComponent,
   getGapsForComponent,
   components,
 } from '@/data/fullCatalogue';
 import { getViewAppearances } from '@/data/viewIndex';
+import { mergedClaims, mergedSources } from '@/research/store';
+import { useResearchStoreVersion } from '@/research/useResearchStore';
+import { PromoteObservationForm } from '@/components/forms/PromoteObservationForm';
+import { OwnershipSection } from '@/components/forms/OwnershipSection';
 import { VendorLogo } from '@/components/logo/VendorLogo';
 import { humanize, formatDuration } from '@/lib/formatting';
 import styles from './SystemDetailDrawer.module.css';
@@ -36,6 +38,7 @@ function Fact({ label, value }: { readonly label: string; readonly value: string
 }
 
 export function SystemDetailDrawer({ component, onClose, onSelectComponent }: SystemDetailDrawerProps) {
+  useResearchStoreVersion();
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
@@ -50,9 +53,10 @@ export function SystemDetailDrawer({ component, onClose, onSelectComponent }: Sy
   const outgoing = getOutgoingEdges(component.component_id);
   const incoming = getIncomingEdges(component.component_id);
   const programmes = getProgrammesForComponent(component.component_id);
-  const claims = getClaimsForSubject(component.component_id);
+  const claims = mergedClaims().filter((c) => c.subject_id === component.component_id);
   const claimSourceIds = Array.from(new Set(claims.flatMap((c) => c.source_ids)));
-  const evidence = getEvidenceSources(Array.from(new Set([...component.source_ids, ...claimSourceIds])));
+  const evidenceIds = new Set([...component.source_ids, ...claimSourceIds]);
+  const evidence = mergedSources().filter((s) => evidenceIds.has(s.source_id));
   const observations = getTechnicalObservationsForComponent(component.component_id);
   const gaps = getGapsForComponent(component.component_id);
   const duration = formatDuration(component.relationship_duration_years_json, component.relationship_start_precision);
@@ -251,11 +255,15 @@ export function SystemDetailDrawer({ component, onClose, onSelectComponent }: Sy
                     {humanize(o.evidence_status)} · confidence {o.confidence_score}
                     {o.direct_contract_inference_allowed ? '' : ' · not a confirmed contract'}
                   </div>
+                  <PromoteObservationForm observation={o} componentId={component.component_id} />
                 </li>
               ))}
             </ul>
           </>
         ) : null}
+
+        <p className={styles.sectionTitle}>Ownership hypotheses</p>
+        <OwnershipSection objectType="COMPONENT" objectId={component.component_id} />
 
         {component.open_questions ? (
           <>

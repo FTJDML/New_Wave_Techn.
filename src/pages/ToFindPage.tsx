@@ -4,7 +4,9 @@ import { PageHeader } from '@/components/shell/PageHeader';
 import { FilterPanel, type FilterFieldConfig } from '@/components/table/FilterPanel';
 import { DataTable, type DataTableColumn } from '@/components/table/DataTable';
 import { GapDetailDrawer } from '@/components/drawer/GapDetailDrawer';
-import { researchGaps, domains, getGap, getDomain } from '@/data/fullCatalogue';
+import { researchGaps, domains, getDomain } from '@/data/fullCatalogue';
+import { mergedGap } from '@/research/store';
+import { useResearchStoreVersion } from '@/research/useResearchStore';
 import type { ResearchGap } from '@/types/catalogue';
 import { humanize } from '@/lib/formatting';
 import { priorityColor } from '@/lib/catalogueStatusMeta';
@@ -17,9 +19,15 @@ function uniqueSorted(values: readonly string[]): string[] {
 }
 
 export function ToFindPage() {
+  const storeVersion = useResearchStoreVersion();
   const navigate = useNavigate();
   const { gapId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // storeVersion isn't read in the callback — it's the useSyncExternalStore snapshot, included
+  // purely to force recomputation when a local gap-status/task edit commits.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const allGaps = useMemo(() => researchGaps.map((g) => mergedGap(g.gap_id) ?? g), [storeVersion]);
 
   const view = searchParams.get('view') === 'table' ? 'table' : 'kanban';
   const search = searchParams.get('q') ?? '';
@@ -36,20 +44,20 @@ export function ToFindPage() {
   const filterFields: FilterFieldConfig[] = useMemo(
     () => [
       { key: 'domain', label: 'Domain', options: domains.map((d) => ({ value: d.domain_id, label: d.domain_name })) },
-      { key: 'priority', label: 'Priority', options: uniqueSorted(researchGaps.map((g) => g.priority)).map((v) => ({ value: v, label: v })) },
+      { key: 'priority', label: 'Priority', options: uniqueSorted(allGaps.map((g) => g.priority)).map((v) => ({ value: v, label: v })) },
     ],
-    [],
+    [allGaps],
   );
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return researchGaps.filter((g) => {
+    return allGaps.filter((g) => {
       if (domainFilter && g.domain_id !== domainFilter) return false;
       if (priorityFilter && g.priority !== priorityFilter) return false;
       if (q && !`${g.gap_title} ${g.research_question}`.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [search, domainFilter, priorityFilter]);
+  }, [search, domainFilter, priorityFilter, allGaps]);
 
   const columns: DataTableColumn<ResearchGap>[] = [
     { key: 'title', label: 'Gap', sortValue: (g) => g.gap_title, render: (g) => g.gap_title },
@@ -68,7 +76,7 @@ export function ToFindPage() {
     { key: 'route', label: 'Fastest research route', sortValue: (g) => g.research_route, render: (g) => g.research_route },
   ];
 
-  const selectedGap = gapId ? getGap(gapId) : undefined;
+  const selectedGap = gapId ? mergedGap(gapId) : undefined;
 
   return (
     <div className={pageStyles.page}>
@@ -82,7 +90,7 @@ export function ToFindPage() {
           values={{ domain: domainFilter, priority: priorityFilter }}
           onFieldChange={setParam}
           shownCount={filtered.length}
-          totalCount={researchGaps.length}
+          totalCount={allGaps.length}
         />
         <div className={pageStyles.viewToggle}>
           <button type="button" className={[pageStyles.tab, view === 'kanban' ? pageStyles.tabActive : ''].join(' ')} onClick={() => setParam('view', '')}>
