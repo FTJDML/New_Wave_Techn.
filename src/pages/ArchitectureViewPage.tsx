@@ -4,6 +4,7 @@ import { AppHeader } from '@/components/shell/AppHeader';
 import { DomainTabs, type DomainTabKey } from '@/components/shell/DomainTabs';
 import { ArchitectureCanvas } from '@/components/canvas/ArchitectureCanvas';
 import { DetailDrawer } from '@/components/drawer/DetailDrawer';
+import { buildViewSummary, formatViewSummary } from '@/lib/viewSummary';
 import styles from './ArchitecturePage.module.css';
 
 interface ArchitectureViewPageProps {
@@ -26,7 +27,7 @@ export function ArchitectureViewPage({ view, tabKey, exportFileName }: Architect
   return (
     <div className={styles.page}>
       <DomainTabs current={tabKey} />
-      <AppHeader title={view.title} subtitle={view.subtitle} />
+      <AppHeader title={view.title} subtitle={view.subtitle} summary={formatViewSummary(buildViewSummary(view))} />
       <ArchitectureCanvas view={view} onSelectNode={selectNode} exportFileName={exportFileName} />
       <DetailDrawer nodes={view.nodes} nodeId={selectedNodeId} onClose={() => selectNode(null)} />
     </div>

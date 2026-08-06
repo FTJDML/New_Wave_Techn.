@@ -3,10 +3,29 @@
   display: block;
 }
 
+/*
+ * Rendered as a small badge/chip, not inline text — a bare bold wordmark sitting directly
+ * beside a bold node title reads as a duplicated label (e.g. "Ctac Ctac XV Unified Commerce"),
+ * the content-provider patch's §9.1 defect. The chip treatment marks it as a logo slot instead.
+ */
 .wordmark {
+  display: inline-block;
+  flex-shrink: 0;
+  /* Caps how much a long vendor name (e.g. "Microsoft Azure") can squeeze the node title in
+     a narrow card — truncates itself with an ellipsis rather than starving the title down
+     to a per-letter wrap. */
+  max-width: 84px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-weight: 700;
   font-family: 'Inter', 'Source Sans 3', system-ui, sans-serif;
-  color: #383834;
+  color: var(--color-ink-muted);
   white-space: nowrap;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  background: var(--color-group-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  line-height: 1.5;
 }

@@ -3,6 +3,7 @@ import styles from './AppHeader.module.css';
 interface AppHeaderProps {
   readonly title: string;
   readonly subtitle?: string;
+  readonly summary?: string;
 }
 
 const LEGEND: ReadonlyArray<{ label: string; color: string }> = [
@@ -15,7 +16,7 @@ const LEGEND: ReadonlyArray<{ label: string; color: string }> = [
   { label: 'TO FIND', color: 'var(--color-gap-border)' },
 ];
 
-export function AppHeader({ title, subtitle }: AppHeaderProps) {
+export function AppHeader({ title, subtitle, summary }: AppHeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles.brand}>
@@ -25,6 +26,7 @@ export function AppHeader({ title, subtitle }: AppHeaderProps) {
       <div className={styles.titles}>
         <h1 className={styles.title}>{title}</h1>
         {subtitle ? <p className={styles.subtitle}>{subtitle}</p> : null}
+        {summary ? <p className={styles.summary} data-testid="view-summary">{summary}</p> : null}
       </div>
       <ul className={styles.legend} aria-label="Status legend">
         {LEGEND.map((item) => (
