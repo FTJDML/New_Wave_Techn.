@@ -70,6 +70,71 @@ test.describe('Suppliers page', () => {
     await page.getByTestId('supplier-detail-drawer').locator('button').filter({ hasText: 'Ctac XV Unified Commerce' }).click();
     await expect(page).toHaveURL(/\/systems\/CMP-CTAC-XV/);
   });
+
+  test('exposes provider-role, status, directness, domain, geography, evidence, year and open-gap filters (content-provider patch §10)', async ({ page }) => {
+    await page.goto('/suppliers');
+    await page.getByTestId('filter-panel-toggle').click();
+    const panel = page.getByTestId('filter-panel');
+    for (const label of [
+      'Provider role',
+      'Current status',
+      'Directness',
+      'Domain',
+      'Geography',
+      'Evidence status',
+      'Known since',
+      'Open provider gap',
+    ]) {
+      await expect(panel.getByLabel(label)).toBeVisible();
+    }
+  });
+
+  test('filtering by provider role narrows to only software/platform vendors', async ({ page }) => {
+    await page.goto('/suppliers?role=SOFTWARE_PLATFORM_VENDOR');
+    const rowCount = await page.locator('table tbody tr').count();
+    expect(rowCount).toBeGreaterThan(0);
+    expect(rowCount).toBeLessThan(vendors.length);
+  });
+
+  test('filtering by open provider gap surfaces Mendix and Stibo', async ({ page }) => {
+    await page.goto('/suppliers?gap=yes');
+    await expect(page.getByRole('row', { name: /Mendix/ })).toBeVisible();
+    await expect(page.getByRole('row', { name: /Stibo/ })).toBeVisible();
+  });
+
+  test('global search returns every newly evidenced catalogue item (content-provider patch §10)', async ({ page }) => {
+    await page.goto('/architecture');
+    await page.getByRole('button', { name: /Search/ }).click();
+    const REQUIRED_TERMS = [
+      'Mendix',
+      'STEP',
+      'Stibo',
+      'RIFF',
+      'Capgemini',
+      'Squadra',
+      'PowerText',
+      'Staffly',
+      'eRecruiter',
+      'RetailSonar',
+      'Planon',
+      'Daikin',
+      'Cloudflare',
+      'Microsoft 365',
+      'Publitas',
+      'SendGrid',
+      'Cookiebot',
+      'Usercentrics',
+      'SAP Analytics Cloud',
+      'SAP BusinessObjects',
+      'Looker Studio',
+      'Smartly',
+      'Channable',
+    ];
+    for (const query of REQUIRED_TERMS) {
+      await page.getByPlaceholder(/Search systems/).fill(query);
+      await expect(page.getByTestId('search-palette'), `expected a search result for "${query}"`).toContainText(query, { ignoreCase: true });
+    }
+  });
 });
 
 test.describe('Evidence page', () => {

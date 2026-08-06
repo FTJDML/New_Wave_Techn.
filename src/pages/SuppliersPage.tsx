@@ -5,9 +5,19 @@ import { FilterPanel, type FilterFieldConfig } from '@/components/table/FilterPa
 import { DataTable, type DataTableColumn } from '@/components/table/DataTable';
 import { SupplierDetailDrawer } from '@/components/drawer/SupplierDetailDrawer';
 import { VendorLogo } from '@/components/logo/VendorLogo';
-import { vendors, getVendor, getCommercialRelationshipsForVendor, getComponentsForVendor } from '@/data/fullCatalogue';
+import { vendors, getVendor, getDomain, getCommercialRelationshipsForVendor, getComponentsForVendor } from '@/data/fullCatalogue';
 import type { Vendor } from '@/types/catalogue';
 import { humanize } from '@/lib/formatting';
+import {
+  vendorProviderRoles,
+  vendorCurrentStatuses,
+  vendorDirectness,
+  vendorGeographies,
+  vendorEvidenceStatuses,
+  vendorKnownSinceYears,
+  vendorDomainIds,
+  vendorHasOpenProviderGap,
+} from '@/lib/supplierFilters';
 import pageStyles from './CatalogPage.module.css';
 
 function uniqueSorted(values: readonly string[]): string[] {
@@ -21,6 +31,14 @@ export function SuppliersPage() {
 
   const search = searchParams.get('q') ?? '';
   const categoryFilter = searchParams.get('category') ?? '';
+  const roleFilter = searchParams.get('role') ?? '';
+  const statusFilter = searchParams.get('status') ?? '';
+  const directnessFilter = searchParams.get('directness') ?? '';
+  const domainFilter = searchParams.get('domain') ?? '';
+  const geographyFilter = searchParams.get('geography') ?? '';
+  const evidenceFilter = searchParams.get('evidence') ?? '';
+  const yearFilter = searchParams.get('year') ?? '';
+  const gapFilter = searchParams.get('gap') ?? '';
 
   const setFilter = (key: string, value: string) => {
     const next = new URLSearchParams(searchParams);
@@ -30,7 +48,52 @@ export function SuppliersPage() {
   };
 
   const filterFields: FilterFieldConfig[] = useMemo(
-    () => [{ key: 'category', label: 'Category', options: uniqueSorted(vendors.map((v) => v.vendor_category)).map((v) => ({ value: v, label: v })) }],
+    () => [
+      { key: 'category', label: 'Category', options: uniqueSorted(vendors.map((v) => v.vendor_category)).map((v) => ({ value: v, label: v })) },
+      {
+        key: 'role',
+        label: 'Provider role',
+        options: uniqueSorted(vendors.flatMap(vendorProviderRoles)).map((v) => ({ value: v, label: humanize(v) })),
+      },
+      {
+        key: 'status',
+        label: 'Current status',
+        options: uniqueSorted(vendors.flatMap(vendorCurrentStatuses)).map((v) => ({ value: v, label: humanize(v) })),
+      },
+      {
+        key: 'directness',
+        label: 'Directness',
+        options: uniqueSorted(vendors.flatMap(vendorDirectness)).map((v) => ({ value: v, label: humanize(v) })),
+      },
+      {
+        key: 'domain',
+        label: 'Domain',
+        options: uniqueSorted(vendors.flatMap(vendorDomainIds)).map((id) => ({ value: id, label: getDomain(id)?.domain_name ?? id })),
+      },
+      {
+        key: 'geography',
+        label: 'Geography',
+        options: uniqueSorted(vendors.flatMap(vendorGeographies)).map((v) => ({ value: v, label: v })),
+      },
+      {
+        key: 'evidence',
+        label: 'Evidence status',
+        options: uniqueSorted(vendors.flatMap(vendorEvidenceStatuses)).map((v) => ({ value: v, label: humanize(v) })),
+      },
+      {
+        key: 'year',
+        label: 'Known since',
+        options: uniqueSorted(vendors.flatMap(vendorKnownSinceYears)).map((v) => ({ value: v, label: v })),
+      },
+      {
+        key: 'gap',
+        label: 'Open provider gap',
+        options: [
+          { value: 'yes', label: 'Yes — TO FIND' },
+          { value: 'no', label: 'No' },
+        ],
+      },
+    ],
     [],
   );
 
@@ -38,10 +101,18 @@ export function SuppliersPage() {
     const q = search.trim().toLowerCase();
     return vendors.filter((v) => {
       if (categoryFilter && v.vendor_category !== categoryFilter) return false;
+      if (roleFilter && !vendorProviderRoles(v).includes(roleFilter)) return false;
+      if (statusFilter && !vendorCurrentStatuses(v).includes(statusFilter)) return false;
+      if (directnessFilter && !vendorDirectness(v).includes(directnessFilter)) return false;
+      if (domainFilter && !vendorDomainIds(v).includes(domainFilter)) return false;
+      if (geographyFilter && !vendorGeographies(v).includes(geographyFilter)) return false;
+      if (evidenceFilter && !vendorEvidenceStatuses(v).includes(evidenceFilter)) return false;
+      if (yearFilter && !vendorKnownSinceYears(v).includes(yearFilter)) return false;
+      if (gapFilter && vendorHasOpenProviderGap(v) !== (gapFilter === 'yes')) return false;
       if (q && !v.vendor_name.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [search, categoryFilter]);
+  }, [search, categoryFilter, roleFilter, statusFilter, directnessFilter, domainFilter, geographyFilter, evidenceFilter, yearFilter, gapFilter]);
 
   const columns: DataTableColumn<Vendor>[] = [
     {
@@ -84,7 +155,17 @@ export function SuppliersPage() {
           onSearchChange={(value) => setFilter('q', value)}
           searchPlaceholder="Search vendors…"
           fields={filterFields}
-          values={{ category: categoryFilter }}
+          values={{
+            category: categoryFilter,
+            role: roleFilter,
+            status: statusFilter,
+            directness: directnessFilter,
+            domain: domainFilter,
+            geography: geographyFilter,
+            evidence: evidenceFilter,
+            year: yearFilter,
+            gap: gapFilter,
+          }}
           onFieldChange={setFilter}
           shownCount={filtered.length}
           totalCount={vendors.length}
