@@ -23,11 +23,6 @@
   paint-order: stroke;
   stroke: #ffffff;
   stroke-width: 3px;
-  opacity: 0;
   transition: opacity 120ms ease;
   pointer-events: none;
-}
-
-.labelVisible {
-  opacity: 1;
 }

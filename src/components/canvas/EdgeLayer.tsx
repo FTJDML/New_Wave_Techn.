@@ -83,7 +83,8 @@ export function EdgeLayer({ edges, width, height, isEdgeDimmed, isEdgeEmphasised
                 x={labelX}
                 y={labelY - 6}
                 textAnchor="middle"
-                className={[styles.label, labelVisible ? styles.labelVisible : ''].join(' ')}
+                className={styles.label}
+                style={{ opacity: labelVisible ? 1 : 0 }}
               >
                 {edge.label}
               </text>

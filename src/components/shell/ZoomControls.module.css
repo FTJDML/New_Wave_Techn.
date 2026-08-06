@@ -1,6 +1,6 @@
 .controls {
   position: absolute;
-  right: 20px;
+  left: 20px;
   bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,10 @@
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  z-index: 5;
+  /* Above the detail drawer's click-outside-to-close overlay (z-index 19/29), so pan/zoom
+     and export stay usable while a node's drawer is open — opening a drawer must not
+     block the rest of the canvas UI. */
+  z-index: 35;
 }
 
 .button {

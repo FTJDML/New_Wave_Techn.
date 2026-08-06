@@ -1,0 +1,64 @@
+.wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-card-border);
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.headerCell {
+  text-align: left;
+  padding: 9px 12px;
+  background: var(--color-group-bg);
+  border-bottom: 1px solid var(--color-card-border);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  position: sticky;
+  top: 0;
+}
+
+.headerCell:hover {
+  color: var(--color-ink);
+}
+
+.sortArrow {
+  margin-left: 4px;
+  opacity: 0.6;
+}
+
+.row {
+  cursor: pointer;
+  border-bottom: 1px solid #eeeeec;
+}
+
+.row:hover {
+  background: #f8f8f6;
+}
+
+.rowSelected {
+  background: #eef4fb;
+}
+
+.cell {
+  padding: 8px 12px;
+  vertical-align: top;
+  color: var(--color-ink);
+}
+
+.emptyState {
+  padding: 32px;
+  text-align: center;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+}

@@ -1,0 +1,88 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 200px;
+  max-width: 360px;
+  padding: 7px 10px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.toggleButtonOpen {
+  background: var(--color-group-bg);
+}
+
+.count {
+  font-size: 12px;
+  color: var(--color-ink-muted);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.panel {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: var(--color-group-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: 6px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 160px;
+}
+
+.fieldLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.select {
+  padding: 6px 8px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 5px;
+  font-size: 12.5px;
+  font-family: inherit;
+  background: #ffffff;
+}
+
+.clearButton {
+  align-self: flex-end;
+  font-size: 12px;
+  color: var(--color-status-target);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 4px;
+}

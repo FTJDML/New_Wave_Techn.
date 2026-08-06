@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
+import { toPng } from 'html-to-image';
 import { totalArchitectureView } from '@/data/curatedView';
 import { useCamera } from '@/hooks/useCamera';
 import { useHighlight } from '@/hooks/useHighlight';
@@ -15,6 +16,7 @@ interface ArchitectureCanvasProps {
 export function ArchitectureCanvas({ onSelectNode }: ArchitectureCanvasProps) {
   const { canvas, groups, nodes, edges } = totalArchitectureView;
   const containerRef = useRef<HTMLDivElement>(null);
+  const layerRef = useRef<HTMLDivElement>(null);
   const { camera, reset, zoomIn, zoomOut, isPanning, handlers } = useCamera(containerRef, {
     canvasWidth: canvas.width,
     canvasHeight: canvas.height,
@@ -22,6 +24,25 @@ export function ArchitectureCanvas({ onSelectNode }: ArchitectureCanvasProps) {
     maxScale: canvas.maxScale,
   });
   const highlight = useHighlight();
+
+  const exportPng = useCallback(async () => {
+    const layer = layerRef.current;
+    if (!layer) return;
+    // Exports the full 1920x1080 poster at native resolution regardless of the current
+    // pan/zoom camera — `style.transform: 'none'` overrides the clone html-to-image
+    // rasterizes, so the export is always the complete, untransformed architecture.
+    const dataUrl = await toPng(layer, {
+      width: canvas.width,
+      height: canvas.height,
+      style: { transform: 'none' },
+      backgroundColor: canvas.background,
+      pixelRatio: 2,
+    });
+    const link = document.createElement('a');
+    link.download = 'action-total-architecture.png';
+    link.href = dataUrl;
+    link.click();
+  }, [canvas.width, canvas.height, canvas.background]);
 
   return (
     <div
@@ -34,6 +55,7 @@ export function ArchitectureCanvas({ onSelectNode }: ArchitectureCanvasProps) {
       onPointerUp={handlers.onPointerUp}
     >
       <div
+        ref={layerRef}
         className={styles.layer}
         data-testid="architecture-layer"
         style={{
@@ -59,7 +81,7 @@ export function ArchitectureCanvas({ onSelectNode }: ArchitectureCanvasProps) {
           onHover={highlight.setActiveNodeId}
         />
       </div>
-      <ZoomControls onZoomIn={zoomIn} onZoomOut={zoomOut} onReset={reset} />
+      <ZoomControls onZoomIn={zoomIn} onZoomOut={zoomOut} onReset={reset} onExportPng={exportPng} />
     </div>
   );
 }
