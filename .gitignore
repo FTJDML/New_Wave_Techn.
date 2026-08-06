@@ -2,6 +2,7 @@ node_modules
 dist
 dist-auth
 dist-ssr
+.claude/
 *.local
 .DS_Store
 test-results
