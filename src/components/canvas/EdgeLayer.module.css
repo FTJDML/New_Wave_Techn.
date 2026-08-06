@@ -1,0 +1,33 @@
+.svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+}
+
+.edgeGroup {
+  transition: opacity 120ms ease;
+}
+
+.dimmed {
+  opacity: 0.15;
+}
+
+.emphasised {
+  opacity: 1;
+}
+
+.label {
+  font-size: 11px;
+  fill: var(--color-ink);
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-width: 3px;
+  opacity: 0;
+  transition: opacity 120ms ease;
+  pointer-events: none;
+}
+
+.labelVisible {
+  opacity: 1;
+}
