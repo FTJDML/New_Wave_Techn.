@@ -102,10 +102,31 @@ export interface ArchitectureEdge {
   readonly notes: string;
 }
 
+/**
+ * Provider-role taxonomy for the Providers & Partners view (content-provider patch §5.1).
+ * A vendor may hold more than one role, but every role is its own CommercialRelationship record
+ * — never concatenated into one ambiguous "supplier" label (patch §7).
+ */
+export type ProviderRole =
+  | 'SOFTWARE_PLATFORM_VENDOR'
+  | 'IMPLEMENTATION_PARTNER'
+  | 'MANAGED_SERVICE_PROVIDER'
+  | 'ROLLOUT_INTEGRATOR'
+  | 'PHYSICAL_SYSTEMS_INTEGRATOR'
+  | 'BPO_OR_CUSTOMER_OPERATIONS_PROVIDER'
+  | 'CONTENT_DATA_AI_SPECIALIST'
+  | 'REGIONAL_RECRUITMENT_SPECIALIST'
+  | 'CLOUD_MIGRATION_PARTNER'
+  | 'LOGISTICS_CONNECTIVITY_PROVIDER'
+  | 'FACILITY_OT_PROVIDER'
+  | 'CANDIDATE_AFFILIATION'
+  | 'UNKNOWN_PROVIDER';
+
 export interface CommercialRelationship {
   readonly relationship_id: string;
   readonly vendor_id: string;
   readonly vendor_name: string;
+  readonly provider_role: ProviderRole;
   readonly relationship_type: string;
   readonly scope_summary: string;
   readonly start_year: number | string;
@@ -120,6 +141,7 @@ export interface CommercialRelationship {
   readonly implementation_partner_id: string;
   readonly support_partner_id: string;
   readonly component_ids: readonly string[];
+  readonly supported_capability_ids: readonly string[];
   readonly evidence_status: string;
   readonly confidence_score: number;
   readonly confidence_band: string;
@@ -127,6 +149,7 @@ export interface CommercialRelationship {
   readonly primary_source_url: string;
   readonly last_verified_date: string;
   readonly open_questions: string;
+  readonly data_classification: string;
   readonly notes: string;
 }
 

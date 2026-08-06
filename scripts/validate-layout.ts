@@ -33,6 +33,11 @@ import {
   type Failure,
 } from './layoutRules';
 
+// The Providers & Partners page (src/pages/ProvidersPage.tsx) is deliberately NOT an
+// ArchitectureView and is not registered here — content-provider patch §5 asks for a
+// provider directory, not a system-flow canvas, so it renders as a plain grid/list page with
+// no groups/nodes/edges/canvas geometry for this validator to check. Its own correctness is
+// covered by tests/unit/providersView.test.ts and tests/e2e/providers.spec.ts instead.
 const VIEWS: readonly ArchitectureView[] = [
   totalArchitectureView,
   storeCheckoutView,

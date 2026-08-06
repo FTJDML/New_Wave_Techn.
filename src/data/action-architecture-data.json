@@ -29,7 +29,7 @@
         "renderAllCatalogRecords": false,
         "edgeRouting": "explicit-waypoints-only",
         "edgesBehindNodes": true,
-        "maxVisibleTopLevelCards": 30,
+        "maxVisibleTopLevelCards": 31,
         "maxVisibleGaps": 8,
         "hideEdgeLabelsUntilHover": true
       },
@@ -667,6 +667,36 @@
           "w": 350,
           "h": 90,
           "gapPriority": "P0"
+        },
+        {
+          "id": "step-mdm",
+          "kind": "satellite",
+          "groupId": "erp",
+          "title": "STEP Master Data Management",
+          "subtitle": "Product master data (investigate)",
+          "vendorId": "VEN-STIBO",
+          "catalogRefs": [
+            "CMP-STEP-MDM"
+          ],
+          "x": 1060,
+          "y": 360,
+          "w": 170,
+          "h": 90
+        },
+        {
+          "id": "mendix",
+          "kind": "satellite",
+          "groupId": "erp",
+          "title": "Mendix low-code platform",
+          "subtitle": "Low-code application platform",
+          "vendorId": "VEN-MENDIX",
+          "catalogRefs": [
+            "CMP-MENDIX"
+          ],
+          "x": 1580,
+          "y": 410,
+          "w": 260,
+          "h": 60
         }
       ],
       "edges": [
@@ -1251,6 +1281,42 @@
               620
             ]
           ]
+        },
+        {
+          "id": "e30",
+          "source": "step-mdm",
+          "target": "sap-s4",
+          "type": "probable-integration",
+          "label": "probable master-data integration",
+          "dashed": true,
+          "points": [
+            [
+              1230,
+              400
+            ],
+            [
+              1260,
+              400
+            ]
+          ]
+        },
+        {
+          "id": "e31",
+          "source": "mendix",
+          "target": "sap-s4",
+          "type": "probable-integration",
+          "label": "probable process-app integration",
+          "dashed": true,
+          "points": [
+            [
+              1560,
+              415
+            ],
+            [
+              1580,
+              415
+            ]
+          ]
         }
       ]
     },
@@ -1310,6 +1376,90 @@
       "VEN-NEXTAI": {
         "strategy": "wordmark",
         "text": "NEXT AI"
+      },
+      "VEN-MENDIX": {
+        "strategy": "wordmark",
+        "text": "Mendix"
+      },
+      "VEN-STIBO": {
+        "strategy": "wordmark",
+        "text": "Stibo Systems"
+      },
+      "VEN-SQUADRA": {
+        "strategy": "wordmark",
+        "text": "Squadra"
+      },
+      "VEN-PUBLITAS": {
+        "strategy": "wordmark",
+        "text": "Publitas"
+      },
+      "VEN-TWILIO": {
+        "strategy": "wordmark",
+        "text": "Twilio SendGrid"
+      },
+      "VEN-USERCENTRICS": {
+        "strategy": "wordmark",
+        "text": "Usercentrics"
+      },
+      "VEN-SMARTLY": {
+        "strategy": "wordmark",
+        "text": "Smartly.io"
+      },
+      "VEN-CHANNABLE": {
+        "strategy": "wordmark",
+        "text": "Channable"
+      },
+      "VEN-HOTJAR": {
+        "strategy": "wordmark",
+        "text": "Hotjar"
+      },
+      "VEN-MOPINION": {
+        "strategy": "wordmark",
+        "text": "Mopinion"
+      },
+      "VEN-QARETAIL": {
+        "strategy": "wordmark",
+        "text": "Q&A Retail"
+      },
+      "VEN-UBERALL": {
+        "strategy": "wordmark",
+        "text": "Uberall"
+      },
+      "VEN-STAFFLY": {
+        "strategy": "wordmark",
+        "text": "Staffly"
+      },
+      "VEN-ERECRUITER": {
+        "strategy": "wordmark",
+        "text": "eRecruiter"
+      },
+      "VEN-CLOUDFLARE": {
+        "strategy": "wordmark",
+        "text": "Cloudflare"
+      },
+      "VEN-AWS": {
+        "strategy": "wordmark",
+        "text": "AWS"
+      },
+      "VEN-FASTLY": {
+        "strategy": "wordmark",
+        "text": "Fastly"
+      },
+      "VEN-RETAILSONAR": {
+        "strategy": "wordmark",
+        "text": "RetailSonar"
+      },
+      "VEN-PLANON": {
+        "strategy": "wordmark",
+        "text": "Planon"
+      },
+      "VEN-DAIKIN": {
+        "strategy": "wordmark",
+        "text": "Daikin"
+      },
+      "VEN-CAPGEMINI": {
+        "strategy": "wordmark",
+        "text": "Capgemini"
       }
     }
   },
@@ -11571,6 +11721,22 @@
         "website_url": "",
         "logo_slug": "",
         "action_relationship_summary": "Evidence source only; not a supplier relationship."
+      },
+      {
+        "vendor_id": "VEN-MENDIX",
+        "vendor_name": "Mendix",
+        "vendor_category": "Low-code application platform",
+        "website_url": "https://www.mendix.com/",
+        "logo_slug": "",
+        "action_relationship_summary": "Low-code application platform (Siemens-owned) used in Commerce-related processes; exact application portfolio and implementation model unknown."
+      },
+      {
+        "vendor_id": "VEN-STIBO",
+        "vendor_name": "Stibo Systems",
+        "vendor_category": "Master data management",
+        "website_url": "https://www.stibosystems.com/",
+        "logo_slug": "",
+        "action_relationship_summary": "Vendor of STEP, the master-data-management product Action's Commerce process team uses hands-on. Vendor attribution is a product-identity inference from Stibo's own documentation, not a confirmed direct Action-Stibo contract."
       }
     ],
     "components": [
@@ -18095,6 +18261,92 @@
         ],
         "open_questions": "SAP offshore MSP, cloud operations, service desk, store support and domain development partners?",
         "notes": ""
+      },
+      {
+        "component_id": "CMP-MENDIX",
+        "component_key": "MENDIX",
+        "display_name": "Mendix low-code application platform",
+        "vendor_id": "VEN-MENDIX",
+        "vendor_name": "Mendix (Siemens)",
+        "product_name": "Mendix low-code application platform",
+        "domain_id": "DOM-COMMERCE",
+        "primary_capability_id": "",
+        "parent_component_id": "",
+        "core_component_id": "",
+        "node_type": "SYSTEM",
+        "architecture_role": "LOW_CODE_APPLICATION_PLATFORM",
+        "business_process": "Low-code application development spanning Commerce, product-data workflows and integration",
+        "description": "Siemens-owned low-code platform. A first-party job posting names it alongside S4/HANA and STEP in a Commerce process role; a public Mendix customer event in November 2023 evidences an Action 'low-code journey' by that date.",
+        "deployment_status": "CURRENT",
+        "evidence_status": "CONFIRMED_MULTI_SOURCE",
+        "confidence_score": 80,
+        "confidence_band": "HIGH",
+        "lifecycle_disposition": "INVESTIGATE",
+        "modernity": "MODERN_LOW_CODE_PLATFORM",
+        "strategic_classification": "SPECIALIST_PLATFORM",
+        "system_of_record": "NO",
+        "criticality": "MEDIUM",
+        "hosting_model": "UNKNOWN",
+        "deployment_model": "UNKNOWN",
+        "geography_scope": "UNKNOWN",
+        "user_groups": "",
+        "first_known_year": 2023,
+        "relationship_start_year": "",
+        "relationship_start_precision": "UNKNOWN",
+        "relationship_duration_years_json": null,
+        "contract_directness": "UNKNOWN",
+        "last_verified_date": "2026-08-06",
+        "primary_source_id": "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE",
+        "primary_source_url": "https://nl.linkedin.com/jobs/view/process-expert-commerce-at-action-4166378303",
+        "source_ids": [
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE",
+          "SRC-MENDIX-BNL-MEETUP-2023"
+        ],
+        "open_questions": "Exact application portfolio, hosting/tenant model, implementation/Centre-of-Excellence partner, licensing and country scope.",
+        "notes": "Modelled as a low-code application/extension platform — deliberately not modelled as an implementation partner and not as a system of record."
+      },
+      {
+        "component_id": "CMP-STEP-MDM",
+        "component_key": "STEP-MDM",
+        "display_name": "STEP Master Data Management",
+        "vendor_id": "VEN-STIBO",
+        "vendor_name": "Stibo Systems",
+        "product_name": "STEP",
+        "domain_id": "DOM-ERP",
+        "primary_capability_id": "CAP-MDM",
+        "parent_component_id": "",
+        "core_component_id": "",
+        "node_type": "SYSTEM",
+        "architecture_role": "PRODUCT_MASTER_DATA_PLATFORM",
+        "business_process": "Product master data management for Commerce",
+        "description": "Action's use of STEP for Master Data Management is confirmed by a first-party job posting (evidence_status reflects this: CONFIRMED_FIRST_PARTY_JOB_SIGNAL). The attribution of the STEP product to vendor Stibo Systems is a separate, strong product-identity inference from Stibo's own platform documentation (STRONG_PRODUCT_IDENTITY_INFERENCE) — not a confirmed direct Action-Stibo contract. Both confidence levels are recorded here since the schema carries one evidence_status per component.",
+        "deployment_status": "CURRENT",
+        "evidence_status": "CONFIRMED_FIRST_PARTY_JOB_SIGNAL",
+        "confidence_score": 75,
+        "confidence_band": "HIGH",
+        "lifecycle_disposition": "INVESTIGATE",
+        "modernity": "MODERN_SAAS",
+        "strategic_classification": "PRODUCT_DATA_CORE_CANDIDATE",
+        "system_of_record": "PARTIAL_OR_TO_VALIDATE",
+        "criticality": "HIGH",
+        "hosting_model": "UNKNOWN",
+        "deployment_model": "UNKNOWN",
+        "geography_scope": "UNKNOWN",
+        "user_groups": "",
+        "first_known_year": "",
+        "relationship_start_year": "",
+        "relationship_start_precision": "UNKNOWN",
+        "relationship_duration_years_json": null,
+        "contract_directness": "UNKNOWN",
+        "last_verified_date": "2026-08-06",
+        "primary_source_id": "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE",
+        "primary_source_url": "https://nl.linkedin.com/jobs/view/process-expert-commerce-at-action-4166378303",
+        "source_ids": [
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE",
+          "SRC-STIBO-STEP-PLATFORM"
+        ],
+        "open_questions": "Is STEP the authoritative product master, PIM, or both? Which master-data domains sit in STEP versus SAP S/4HANA? Onboarding workflow for new products/suppliers? Syndication targets (Contentstack, Algolia, webshop, app, stores, GOLD, data platform)? Vendor attribution remains an inference, not a confirmed contract.",
+        "notes": "Vendor attribution to Stibo Systems is a product-identity inference (STRONG_PRODUCT_IDENTITY_INFERENCE), separate from and weaker than the confirmed Action-deployment signal (CONFIRMED_FIRST_PARTY_JOB_SIGNAL)."
       }
     ],
     "component_capabilities": [
@@ -19805,6 +20057,36 @@
         "confidence_score": 73,
         "source_ids": [
           "SRC-NEXTAI-ACTION"
+        ]
+      },
+      {
+        "component_capability_id": "CC-MENDIX-MDM",
+        "component_id": "CMP-MENDIX",
+        "capability_id": "CAP-MDM",
+        "relationship_type": "SECONDARY",
+        "confidence_score": 60,
+        "source_ids": [
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE"
+        ]
+      },
+      {
+        "component_capability_id": "CC-MENDIX-INTEGRATION",
+        "component_id": "CMP-MENDIX",
+        "capability_id": "CAP-INTEGRATION",
+        "relationship_type": "SECONDARY",
+        "confidence_score": 55,
+        "source_ids": [
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE"
+        ]
+      },
+      {
+        "component_capability_id": "CC-STEP-MDM-MDM",
+        "component_id": "CMP-STEP-MDM",
+        "capability_id": "CAP-MDM",
+        "relationship_type": "PRIMARY",
+        "confidence_score": 75,
+        "source_ids": [
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE"
         ]
       }
     ],
@@ -23263,6 +23545,7 @@
         "relationship_id": "REL-001",
         "vendor_id": "VEN-PANOSTON",
         "vendor_name": "Pan Oston",
+        "provider_role": "PHYSICAL_SYSTEMS_INTEGRATOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Checkout-zone design, manufacturing, integration, staging, logistics and installation.",
         "start_year": 2005,
@@ -23280,6 +23563,9 @@
           "CMP-PAN-OSTON",
           "CMP-PAN-OSTON-CWA"
         ],
+        "supported_capability_ids": [
+          "CAP-STORE-ROLLOUT"
+        ],
         "evidence_status": "CONFIRMED_VENDOR_CASE",
         "confidence_score": 98,
         "confidence_band": "VERY_HIGH",
@@ -23291,12 +23577,14 @@
         "primary_source_url": "https://panoston.nl/artikelen/nieuws/action-opent-3000e-winkel",
         "last_verified_date": "2026-08-05",
         "open_questions": "Full partner bill of materials; Action programme owner; target POS/SCO role.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-002",
         "vendor_id": "VEN-CTAC",
         "vendor_name": "Ctac",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "XV Retail / Unified Commerce store platform and related services.",
         "start_year": 2005,
@@ -23318,6 +23606,12 @@
           "CMP-XV-API",
           "CMP-XV-OCL"
         ],
+        "supported_capability_ids": [
+          "CAP-STORE-POS",
+          "CAP-STORE-SCO",
+          "CAP-INTEGRATION",
+          "CAP-LOYALTY"
+        ],
         "evidence_status": "CONFIRMED_VENDOR_CASE",
         "confidence_score": 92,
         "confidence_band": "VERY_HIGH",
@@ -23329,12 +23623,14 @@
         "primary_source_url": "https://www.ctac.nl/blog/action-kiest-opnieuw-voor-xv-unified-commerce-platform-van-ctac/",
         "last_verified_date": "2026-08-05",
         "open_questions": "Target POS supplier; remaining XV scope; contract term; Enactor relationship; country roadmap.",
+        "data_classification": "INTERNAL",
         "notes": "The source says “mid-zeroes”; 2005 is used only as an approximate anchor, not an exact contract start date."
       },
       {
         "relationship_id": "REL-003",
         "vendor_id": "VEN-SAP",
         "vendor_name": "SAP",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Enterprise SAP landscape including S/4HANA, CAR, EWM, BW, Ariba/Business Network, SuccessFactors and ECP.",
         "start_year": "",
@@ -23362,6 +23658,16 @@
           "CMP-SAP-SAC",
           "CMP-SAP-BO"
         ],
+        "supported_capability_ids": [
+          "CAP-ERP",
+          "CAP-WMS",
+          "CAP-TMS",
+          "CAP-PROCUREMENT",
+          "CAP-HCM",
+          "CAP-PAYROLL",
+          "CAP-DATA-PLATFORM",
+          "CAP-BI"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 98,
         "confidence_band": "VERY_HIGH",
@@ -23374,12 +23680,14 @@
         "primary_source_url": "https://nl.action.jobs/vacatures/sr-application-analyst-sap-functional-e106982",
         "last_verified_date": "2026-08-05",
         "open_questions": "Historic start date, contract structure, modules, implementation partners, offshore MSP and country templates.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-004",
         "vendor_id": "VEN-MICROSOFT",
         "vendor_name": "Microsoft",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Azure cloud/data infrastructure, Power BI and Microsoft 365 signals.",
         "start_year": 2017,
@@ -23398,6 +23706,11 @@
           "CMP-POWER-BI",
           "CMP-M365"
         ],
+        "supported_capability_ids": [
+          "CAP-CLOUD",
+          "CAP-BI",
+          "CAP-WORKPLACE"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 94,
         "confidence_band": "VERY_HIGH",
@@ -23410,12 +23723,14 @@
         "primary_source_url": "https://www.capgemini.com/be-en/news/client-stories/action-migrates-to-the-microsoft-azure-cloud/",
         "last_verified_date": "2026-08-05",
         "open_questions": "M365/security license scope, tenant structure and current managed-service partners.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-005",
         "vendor_id": "VEN-CAPGEMINI",
         "vendor_name": "Capgemini",
+        "provider_role": "CLOUD_MIGRATION_PARTNER",
         "relationship_type": "IMPLEMENTATION_PARTNER",
         "scope_summary": "Azure cloud transformation and migration.",
         "start_year": 2017,
@@ -23432,6 +23747,9 @@
         "component_ids": [
           "CMP-CAPGEMINI-AZURE"
         ],
+        "supported_capability_ids": [
+          "CAP-IMPLEMENTATION"
+        ],
         "evidence_status": "CONFIRMED_VENDOR_CASE",
         "confidence_score": 88,
         "confidence_band": "HIGH",
@@ -23441,12 +23759,14 @@
         "primary_source_url": "https://www.capgemini.com/be-en/news/client-stories/action-migrates-to-the-microsoft-azure-cloud/",
         "last_verified_date": "2026-08-05",
         "open_questions": "Current delivery, MSP or advisory role?",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-006",
         "vendor_id": "VEN-SYMPHONYAI",
         "vendor_name": "SymphonyAI",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "GOLD forecasting, replenishment, allocation and supplier collaboration.",
         "start_year": "",
@@ -23469,6 +23789,11 @@
           "CMP-GOLD-SUPPLIER-COLLAB",
           "CMP-GOLD-WH-REPLENISH"
         ],
+        "supported_capability_ids": [
+          "CAP-FORECAST",
+          "CAP-ALLOCATION",
+          "CAP-PROCUREMENT"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 96,
         "confidence_band": "VERY_HIGH",
@@ -23479,12 +23804,14 @@
         "primary_source_url": "https://nl.action.jobs/vacatures/senior-application-analyst-supply-chain-sap-ewms4-e107780",
         "last_verified_date": "2026-08-05",
         "open_questions": "Original start date, contract term, implementation/support partner and tactical planning target.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-007",
         "vendor_id": "VEN-TCS",
         "vendor_name": "Tata Consultancy Services",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "TCS Optumera pricing optimization and pricing transformation.",
         "start_year": "",
@@ -23501,6 +23828,9 @@
         "component_ids": [
           "CMP-TCS-OPTUMERA"
         ],
+        "supported_capability_ids": [
+          "CAP-PRICING"
+        ],
         "evidence_status": "CONFIRMED_VENDOR_CASE",
         "confidence_score": 85,
         "confidence_band": "HIGH",
@@ -23510,12 +23840,14 @@
         "primary_source_url": "https://www.tcs.com/what-we-do/industries/retail/case-study/dutch-international-retailer-action",
         "last_verified_date": "2026-08-05",
         "open_questions": "Current contract, countries, source/target systems and owner.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-008",
         "vendor_id": "VEN-RETAILSONAR",
         "vendor_name": "RetailSonar",
+        "provider_role": "CONTENT_DATA_AI_SPECIALIST",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Location intelligence for store expansion.",
         "start_year": "",
@@ -23532,6 +23864,9 @@
         "component_ids": [
           "CMP-RETAILSONAR"
         ],
+        "supported_capability_ids": [
+          "CAP-LOCATION"
+        ],
         "evidence_status": "CONFIRMED_VENDOR_CASE",
         "confidence_score": 82,
         "confidence_band": "HIGH",
@@ -23541,12 +23876,14 @@
         "primary_source_url": "https://www.retailsonar.com/en/cases/action",
         "last_verified_date": "2026-08-05",
         "open_questions": "Current term, users and interfaces.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-009",
         "vendor_id": "VEN-ADYEN",
         "vendor_name": "Adyen",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Payment processing in stores and webshop.",
         "start_year": "",
@@ -23563,6 +23900,9 @@
         "component_ids": [
           "CMP-ADYEN"
         ],
+        "supported_capability_ids": [
+          "CAP-PAY-PROCESSING"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 98,
         "confidence_band": "VERY_HIGH",
@@ -23572,12 +23912,14 @@
         "primary_source_url": "https://company.action.com/wp-content/uploads/2026/04/Privacy-Statement_2026_clean.pdf",
         "last_verified_date": "2026-08-05",
         "open_questions": "Start date, terminal supplier, acquiring countries, payment methods and integration ownership.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-010",
         "vendor_id": "VEN-UKG",
         "vendor_name": "UKG",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Target workforce-management platform replacing Kronos WFC.",
         "start_year": "",
@@ -23594,6 +23936,9 @@
         "component_ids": [
           "CMP-UKG-PRO-WFM"
         ],
+        "supported_capability_ids": [
+          "CAP-WFM"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 98,
         "confidence_band": "VERY_HIGH",
@@ -23603,12 +23948,14 @@
         "primary_source_url": "https://apply.action.com/job/International-HRIS-Expert-Kronos/1379097800/",
         "last_verified_date": "2026-08-05",
         "open_questions": "Rollout status, country waves and support partner.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-011",
         "vendor_id": "VEN-KRONOS",
         "vendor_name": "Kronos",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Incumbent Workforce Central platform.",
         "start_year": "",
@@ -23625,6 +23972,9 @@
         "component_ids": [
           "CMP-K-RONOS-WFC"
         ],
+        "supported_capability_ids": [
+          "CAP-WFM"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 98,
         "confidence_band": "VERY_HIGH",
@@ -23634,12 +23984,14 @@
         "primary_source_url": "https://apply.action.com/job/International-HRIS-Expert-Kronos/1379097800/",
         "last_verified_date": "2026-08-05",
         "open_questions": "",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-012",
         "vendor_id": "VEN-SERVICENOW",
         "vendor_name": "ServiceNow",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "ServiceNow platform including ITSM, CSM and CMDB.",
         "start_year": "",
@@ -23659,6 +24011,9 @@
           "CMP-SN-CSM",
           "CMP-SN-CMDB"
         ],
+        "supported_capability_ids": [
+          "CAP-ITSM"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 96,
         "confidence_band": "VERY_HIGH",
@@ -23668,12 +24023,14 @@
         "primary_source_url": "https://apply.action.com/job/ServiceNow-Solution-Architect/1367327800/",
         "last_verified_date": "2026-08-05",
         "open_questions": "Module breadth, owner model, CMDB completeness, field service and Integration Hub.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-013",
         "vendor_id": "VEN-CONTENTSTACK",
         "vendor_name": "Contentstack",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "TECHNICAL_COMPONENT",
         "scope_summary": "Headless CMS deployment on Action-owned endpoint.",
         "start_year": "",
@@ -23690,6 +24047,9 @@
         "component_ids": [
           "CMP-CONTENTSTACK"
         ],
+        "supported_capability_ids": [
+          "CAP-DXP-CMS"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 88,
         "confidence_band": "HIGH",
@@ -23700,12 +24060,14 @@
         "primary_source_url": "https://contentstack-extensions.action.com/",
         "last_verified_date": "2026-08-05",
         "open_questions": "Direct contract, implementation partner, content scope and current architecture.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-014",
         "vendor_id": "VEN-ALGOLIA",
         "vendor_name": "Algolia",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Product search in the Action app; possible web scope.",
         "start_year": "",
@@ -23722,6 +24084,9 @@
         "component_ids": [
           "CMP-ALGOLIA"
         ],
+        "supported_capability_ids": [
+          "CAP-DXP-SEARCH"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 95,
         "confidence_band": "VERY_HIGH",
@@ -23731,12 +24096,14 @@
         "primary_source_url": "https://www.action.com/nl-nl/cookie-statement-app/",
         "last_verified_date": "2026-08-05",
         "open_questions": "Web scope, contract owner and product-index source.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-015",
         "vendor_id": "VEN-GOOGLE",
         "vendor_name": "Google",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Firebase Analytics and Crashlytics; BigQuery and Looker Studio; marketing platforms.",
         "start_year": "",
@@ -23758,6 +24125,13 @@
           "CMP-LOOKER-STUDIO",
           "CMP-GOOGLE-ADS"
         ],
+        "supported_capability_ids": [
+          "CAP-BEHAVIORAL",
+          "CAP-OBSERVABILITY",
+          "CAP-DATA-PLATFORM",
+          "CAP-BI",
+          "CAP-MARTECH-CAMPAIGN"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 90,
         "confidence_band": "VERY_HIGH",
@@ -23769,12 +24143,14 @@
         "primary_source_url": "https://www.action.com/nl-nl/cookie-statement-app/",
         "last_verified_date": "2026-08-05",
         "open_questions": "",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-016",
         "vendor_id": "VEN-DATABRICKS",
         "vendor_name": "Databricks",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Lakehouse, analytics and data-science platform.",
         "start_year": "",
@@ -23791,6 +24167,9 @@
         "component_ids": [
           "CMP-DATABRICKS"
         ],
+        "supported_capability_ids": [
+          "CAP-DATA-PLATFORM"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 95,
         "confidence_band": "VERY_HIGH",
@@ -23800,12 +24179,14 @@
         "primary_source_url": "https://apply.action.com/job/Data-Analyst-Commerce/1398403300/",
         "last_verified_date": "2026-08-05",
         "open_questions": "",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-017",
         "vendor_id": "VEN-NEXTAI",
         "vendor_name": "NEXT AI",
+        "provider_role": "CONTENT_DATA_AI_SPECIALIST",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Customer OS aggregating customer feedback sources.",
         "start_year": "",
@@ -23822,6 +24203,9 @@
         "component_ids": [
           "CMP-NEXT-AI"
         ],
+        "supported_capability_ids": [
+          "CAP-CUSTOMER-INTEL"
+        ],
         "evidence_status": "CONFIRMED_VENDOR_CASE",
         "confidence_score": 88,
         "confidence_band": "HIGH",
@@ -23831,12 +24215,14 @@
         "primary_source_url": "https://www.nextapp.co/customer-stories/how-action-turns-5-feedback-channels-into-one-retail-playbook",
         "last_verified_date": "2026-08-05",
         "open_questions": "",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-018",
         "vendor_id": "VEN-SQUADRA",
         "vendor_name": "Squadra",
+        "provider_role": "IMPLEMENTATION_PARTNER",
         "relationship_type": "IMPLEMENTATION_PARTNER",
         "scope_summary": "PowerText.ai and multilingual product-content project.",
         "start_year": "",
@@ -23853,6 +24239,9 @@
         "component_ids": [
           "CMP-POWERTEXT"
         ],
+        "supported_capability_ids": [
+          "CAP-DXP-CMS"
+        ],
         "evidence_status": "CONFIRMED_VENDOR_CASE",
         "confidence_score": 82,
         "confidence_band": "HIGH",
@@ -23862,12 +24251,14 @@
         "primary_source_url": "https://squadra.nl/nl/cases/action/",
         "last_verified_date": "2026-08-05",
         "open_questions": "",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-019",
         "vendor_id": "VEN-STAFFLY",
         "vendor_name": "Staffly",
+        "provider_role": "REGIONAL_RECRUITMENT_SPECIALIST",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Recruitment assessments for Action Poland.",
         "start_year": 2022,
@@ -23884,6 +24275,9 @@
         "component_ids": [
           "CMP-STAFFLY"
         ],
+        "supported_capability_ids": [
+          "CAP-RECRUIT"
+        ],
         "evidence_status": "CONFIRMED_VENDOR_CASE",
         "confidence_score": 80,
         "confidence_band": "HIGH",
@@ -23893,12 +24287,14 @@
         "primary_source_url": "https://staffly.pl/case-study-action/",
         "last_verified_date": "2026-08-05",
         "open_questions": "",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-020",
         "vendor_id": "VEN-RIFF",
         "vendor_name": "RIFF",
+        "provider_role": "BPO_OR_CUSTOMER_OPERATIONS_PROVIDER",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Customer-contact services.",
         "start_year": 2016,
@@ -23915,6 +24311,9 @@
         "component_ids": [
           "CMP-RIFF"
         ],
+        "supported_capability_ids": [
+          "CAP-CRM"
+        ],
         "evidence_status": "CONFIRMED_VENDOR_CASE",
         "confidence_score": 78,
         "confidence_band": "HIGH",
@@ -23924,12 +24323,14 @@
         "primary_source_url": "https://www.riffonline.com/",
         "last_verified_date": "2026-08-05",
         "open_questions": "Technology stack, countries, channels and contract scope.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-021",
         "vendor_id": "VEN-WUUNDER",
         "vendor_name": "Wuunder",
+        "provider_role": "LOGISTICS_CONNECTIVITY_PROVIDER",
         "relationship_type": "PRIVATE_CONFIRMED",
         "scope_summary": "Shipping and carrier connectivity relationship.",
         "start_year": "",
@@ -23946,6 +24347,9 @@
         "component_ids": [
           "CMP-WUUNDER"
         ],
+        "supported_capability_ids": [
+          "CAP-PARCEL"
+        ],
         "evidence_status": "PRIVATE_CONFIRMATION",
         "confidence_score": 72,
         "confidence_band": "MEDIUM",
@@ -23955,12 +24359,14 @@
         "primary_source_url": "https://wuunder.com/",
         "last_verified_date": "2026-08-05",
         "open_questions": "Countries, product modules, volumes, carriers, business unit and interfaces.",
+        "data_classification": "RESTRICTED",
         "notes": ""
       },
       {
         "relationship_id": "REL-022",
         "vendor_id": "VEN-PLANON",
         "vendor_name": "Planon",
+        "provider_role": "FACILITY_OT_PROVIDER",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Facility and real-estate domain system.",
         "start_year": "",
@@ -23977,6 +24383,9 @@
         "component_ids": [
           "CMP-PLANON"
         ],
+        "supported_capability_ids": [
+          "CAP-FACILITY"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 82,
         "confidence_band": "HIGH",
@@ -23986,12 +24395,14 @@
         "primary_source_url": "https://apply.action.com/job/Finance-Business-Analyst/1393814700/",
         "last_verified_date": "2026-08-05",
         "open_questions": "",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-023",
         "vendor_id": "VEN-ANAPLAN",
         "vendor_name": "Anaplan",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Commercial planning platform with explicit replacement signal.",
         "start_year": "",
@@ -24008,6 +24419,9 @@
         "component_ids": [
           "CMP-ANAPLAN"
         ],
+        "supported_capability_ids": [
+          "CAP-ALLOCATION"
+        ],
         "evidence_status": "CONFIRMED_FIRST_PARTY",
         "confidence_score": 88,
         "confidence_band": "HIGH",
@@ -24017,12 +24431,14 @@
         "primary_source_url": "https://nl.action.jobs/vacatures/process-expert-commercial-planning-e114359",
         "last_verified_date": "2026-08-05",
         "open_questions": "Target vendor, retained scope and migration timeline.",
+        "data_classification": "INTERNAL",
         "notes": ""
       },
       {
         "relationship_id": "REL-024",
         "vendor_id": "VEN-DAIKIN",
         "vendor_name": "Daikin",
+        "provider_role": "FACILITY_OT_PROVIDER",
         "relationship_type": "DIRECT_SUPPLIER",
         "scope_summary": "Store HVAC and facility technology/support.",
         "start_year": "",
@@ -24039,6 +24455,9 @@
         "component_ids": [
           "CMP-DAIKIN-HVAC"
         ],
+        "supported_capability_ids": [
+          "CAP-FACILITY"
+        ],
         "evidence_status": "CONFIRMED_VENDOR_CASE",
         "confidence_score": 82,
         "confidence_band": "HIGH",
@@ -24048,7 +24467,80 @@
         "primary_source_url": "https://www.daikin.nl/nl_nl/about/case-studies/action.html",
         "last_verified_date": "2026-08-05",
         "open_questions": "",
+        "data_classification": "INTERNAL",
         "notes": ""
+      },
+      {
+        "relationship_id": "REL-025",
+        "vendor_id": "VEN-MENDIX",
+        "vendor_name": "Mendix",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
+        "relationship_type": "DIRECT_SUPPLIER",
+        "scope_summary": "Low-code application platform used in Commerce-related process work.",
+        "start_year": "",
+        "start_precision": "UNKNOWN",
+        "known_since_year": 2023,
+        "relationship_duration_years_json": null,
+        "current_status": "CURRENT",
+        "lifecycle_status": "CURRENT",
+        "strategic_role": "Low-code application/extension layer around Commerce and product-data processes.",
+        "geography_scope": "UNKNOWN",
+        "directness": "UNKNOWN",
+        "implementation_partner_id": "",
+        "support_partner_id": "",
+        "component_ids": [
+          "CMP-MENDIX"
+        ],
+        "supported_capability_ids": [],
+        "evidence_status": "CONFIRMED_MULTI_SOURCE",
+        "confidence_score": 80,
+        "confidence_band": "HIGH",
+        "source_ids": [
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE",
+          "SRC-MENDIX-BNL-MEETUP-2023"
+        ],
+        "primary_source_url": "https://nl.linkedin.com/jobs/view/process-expert-commerce-at-action-4166378303",
+        "last_verified_date": "2026-08-06",
+        "open_questions": "App portfolio, hosting/tenant model, implementation/CoE partner, licensing and country scope.",
+        "data_classification": "INTERNAL",
+        "notes": ""
+      },
+      {
+        "relationship_id": "REL-026",
+        "vendor_id": "VEN-STIBO",
+        "vendor_name": "Stibo Systems",
+        "provider_role": "SOFTWARE_PLATFORM_VENDOR",
+        "relationship_type": "DIRECT_SUPPLIER",
+        "scope_summary": "STEP Master Data Management, used hands-on by Action's Commerce process team.",
+        "start_year": "",
+        "start_precision": "UNKNOWN",
+        "known_since_year": "",
+        "relationship_duration_years_json": null,
+        "current_status": "CURRENT",
+        "lifecycle_status": "INVESTIGATE",
+        "strategic_role": "Product master-data platform candidate.",
+        "geography_scope": "UNKNOWN",
+        "directness": "UNKNOWN",
+        "implementation_partner_id": "",
+        "support_partner_id": "",
+        "component_ids": [
+          "CMP-STEP-MDM"
+        ],
+        "supported_capability_ids": [
+          "CAP-MDM"
+        ],
+        "evidence_status": "CONFIRMED_FIRST_PARTY_JOB_SIGNAL",
+        "confidence_score": 75,
+        "confidence_band": "HIGH",
+        "source_ids": [
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE",
+          "SRC-STIBO-STEP-PLATFORM"
+        ],
+        "primary_source_url": "https://nl.linkedin.com/jobs/view/process-expert-commerce-at-action-4166378303",
+        "last_verified_date": "2026-08-06",
+        "open_questions": "Authoritative product master vs PIM; master-data domain split with SAP S/4HANA; syndication targets. Vendor attribution (Stibo) is a product-identity inference, not a confirmed contract.",
+        "data_classification": "INTERNAL",
+        "notes": "Vendor attribution to Stibo Systems is inferred from Stibo's own product documentation (SRC-STIBO-STEP-PLATFORM), separate from and weaker than the confirmed Action-deployment signal."
       }
     ],
     "programmes": [
@@ -24630,6 +25122,54 @@
         "last_verified_date": "2026-08-05",
         "reliability_rating_1_5": 3,
         "notes": "Do not treat inferred reporting lines or ownership as HR-certified facts."
+      },
+      {
+        "source_id": "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE",
+        "source_title": "Process Expert Commerce",
+        "publisher": "Action",
+        "source_type": "FIRST_PARTY_JOB",
+        "publication_date_or_year": "",
+        "url_or_reference": "https://nl.linkedin.com/jobs/view/process-expert-commerce-at-action-4166378303",
+        "evidence_scope": "Names S4/HANA (main), Mendix and STEP (Master Data Management) as systems the role works hands-on with, alongside test tools.",
+        "last_verified_date": "2026-08-06",
+        "reliability_rating_1_5": 5,
+        "notes": ""
+      },
+      {
+        "source_id": "SRC-MENDIX-BNL-MEETUP-2023",
+        "source_title": "Mendix BNL Retail & Logistics Meetup — Action customer speakers",
+        "publisher": "Mendix",
+        "source_type": "VENDOR_CASE",
+        "publication_date_or_year": "2023",
+        "url_or_reference": "https://ww2.mendix.com/BNL-LE-2023-11-16-Retail--Logistics-Meetup-AID9446238-CID9446238_Registration.html",
+        "evidence_scope": "Two named Action employees were announced as customer speakers at this 16 November 2023 event, sharing Action's experience and low-code journey. Real names are stakeholder-private data — see ownership_links, not this evidence record, for who they are.",
+        "last_verified_date": "2026-08-06",
+        "reliability_rating_1_5": 4,
+        "notes": "Vendor event-registration page, not an Action first-party statement — reliability set one point below FIRST_PARTY_JOB sources accordingly."
+      },
+      {
+        "source_id": "SRC-STIBO-STEP-PLATFORM",
+        "source_title": "STEP platform — Stibo Systems product documentation",
+        "publisher": "Stibo Systems",
+        "source_type": "VENDOR_CASE",
+        "publication_date_or_year": "",
+        "url_or_reference": "https://www.stibosystems.com/platform",
+        "evidence_scope": "Confirms STEP is Stibo Systems' enterprise MDM platform product. Says nothing about Action specifically — establishes product identity only, not any Action-Stibo relationship.",
+        "last_verified_date": "2026-08-06",
+        "reliability_rating_1_5": 4,
+        "notes": ""
+      },
+      {
+        "source_id": "SRC-ACTION-JOB-MARKETING-FORMAT",
+        "source_title": "Manager IT Marketing & Format Technology",
+        "publisher": "Action",
+        "source_type": "FIRST_PARTY_JOB",
+        "publication_date_or_year": "",
+        "url_or_reference": "https://nl.action.jobs/vacatures/manager-it-marketing-format-e113231",
+        "evidence_scope": "Confirms external partners supply multidisciplinary development teams in Marketing & Format Technology; partner names are not public.",
+        "last_verified_date": "2026-08-06",
+        "reliability_rating_1_5": 5,
+        "notes": ""
       }
     ],
     "claims": [
@@ -28161,6 +28701,128 @@
         ],
         "data_classification": "INTERNAL",
         "notes": ""
+      },
+      {
+        "claim_id": "CLM-0195",
+        "subject_type": "COMPONENT",
+        "subject_id": "CMP-MENDIX",
+        "predicate": "DEPLOYMENT_OR_RELATIONSHIP",
+        "value": "Action uses Mendix, a low-code application platform, hands-on in Commerce-related process work.",
+        "claim_status": "SUPPORTED",
+        "confidence_score": 82,
+        "confidence_band": "HIGH",
+        "date_checked": "2026-08-06",
+        "valid_from": "",
+        "valid_to": "",
+        "source_ids": [
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE"
+        ],
+        "data_classification": "INTERNAL",
+        "notes": ""
+      },
+      {
+        "claim_id": "CLM-0196",
+        "subject_type": "COMPONENT",
+        "subject_id": "CMP-MENDIX",
+        "predicate": "PROGRAMME_STATUS",
+        "value": "Action had a documented low-code journey by November 2023, evidenced by a public Mendix retail & logistics customer event naming Action speakers.",
+        "claim_status": "SUPPORTED",
+        "confidence_score": 70,
+        "confidence_band": "MEDIUM",
+        "date_checked": "2026-08-06",
+        "valid_from": "2023",
+        "valid_to": "",
+        "source_ids": [
+          "SRC-MENDIX-BNL-MEETUP-2023"
+        ],
+        "data_classification": "INTERNAL",
+        "notes": "Speaker identities are recorded as ownership_links, not here — see docs/content-provider-patch-changelog.md."
+      },
+      {
+        "claim_id": "CLM-0197",
+        "subject_type": "COMPONENT",
+        "subject_id": "CMP-MENDIX",
+        "predicate": "IDENTIFICATION_STATUS",
+        "value": "The exact Mendix application portfolio, operating/hosting/tenant model, licensing, country scope and implementation/Centre-of-Excellence partner remain unknown.",
+        "claim_status": "OPEN_RESEARCH_GAP",
+        "confidence_score": 40,
+        "confidence_band": "LOW",
+        "date_checked": "2026-08-06",
+        "valid_from": "",
+        "valid_to": "",
+        "source_ids": [],
+        "data_classification": "INTERNAL",
+        "notes": ""
+      },
+      {
+        "claim_id": "CLM-0198",
+        "subject_type": "COMPONENT",
+        "subject_id": "CMP-STEP-MDM",
+        "predicate": "DEPLOYMENT_OR_RELATIONSHIP",
+        "value": "Action's Commerce process team uses STEP (Master Data Management) hands-on, per a first-party job posting.",
+        "claim_status": "SUPPORTED",
+        "confidence_score": 85,
+        "confidence_band": "HIGH",
+        "date_checked": "2026-08-06",
+        "valid_from": "",
+        "valid_to": "",
+        "source_ids": [
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE"
+        ],
+        "data_classification": "INTERNAL",
+        "notes": ""
+      },
+      {
+        "claim_id": "CLM-0199",
+        "subject_type": "COMPONENT",
+        "subject_id": "CMP-STEP-MDM",
+        "predicate": "IDENTIFICATION_STATUS",
+        "value": "STEP is identified as Stibo Systems' enterprise MDM platform per Stibo's own product documentation. This is a product-identity inference, not a confirmed Action-Stibo contract.",
+        "claim_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 65,
+        "confidence_band": "MEDIUM",
+        "date_checked": "2026-08-06",
+        "valid_from": "",
+        "valid_to": "",
+        "source_ids": [
+          "SRC-STIBO-STEP-PLATFORM"
+        ],
+        "data_classification": "INTERNAL",
+        "notes": ""
+      },
+      {
+        "claim_id": "CLM-0200",
+        "subject_type": "COMPONENT",
+        "subject_id": "CMP-STEP-MDM",
+        "predicate": "IDENTIFICATION_STATUS",
+        "value": "Whether STEP is the authoritative product master, PIM, or both, which master-data domains sit in STEP versus SAP S/4HANA, and downstream syndication targets, remain open.",
+        "claim_status": "OPEN_RESEARCH_GAP",
+        "confidence_score": 40,
+        "confidence_band": "LOW",
+        "date_checked": "2026-08-06",
+        "valid_from": "",
+        "valid_to": "",
+        "source_ids": [],
+        "data_classification": "INTERNAL",
+        "notes": ""
+      },
+      {
+        "claim_id": "CLM-0201",
+        "subject_type": "COMPONENT",
+        "subject_id": "CMP-CHANNEL-WEB",
+        "predicate": "DEPLOYMENT_OR_RELATIONSHIP",
+        "value": "Action sources multidisciplinary development teams from external partners for Marketing & Format Technology; the partner names are not public.",
+        "claim_status": "SUPPORTED",
+        "confidence_score": 78,
+        "confidence_band": "HIGH",
+        "date_checked": "2026-08-06",
+        "valid_from": "",
+        "valid_to": "",
+        "source_ids": [
+          "SRC-ACTION-JOB-MARKETING-FORMAT"
+        ],
+        "data_classification": "INTERNAL",
+        "notes": "Confirmed sourcing model; do not infer specific partner names."
       }
     ],
     "technical_observations": [
@@ -28884,7 +29546,7 @@
           "SRC-ACTION-STAKEHOLDER-MAP"
         ],
         "data_classification": "INTERNAL_CONFIDENTIAL",
-        "notes": ""
+        "notes": "Private intelligence (user-provided, RESTRICTED): speaks about Mendix."
       },
       {
         "stakeholder_id": "STK-JACK-EIJKMAN",
@@ -29263,6 +29925,78 @@
         ],
         "data_classification": "INTERNAL_CONFIDENTIAL",
         "notes": ""
+      },
+      {
+        "stakeholder_id": "STK-PATRICK-WERKMAN",
+        "full_name": "Patrick Werkman",
+        "title": "IT Service Delivery Manager",
+        "department_or_cluster": "IT Service Delivery",
+        "seniority": "MANAGER",
+        "current_status": "TO_VALIDATE",
+        "mandate_summary": "Publicly announced as an Action customer speaker at a November 2023 Mendix retail/logistics meetup, discussing Action's low-code journey.",
+        "linkedin_url": "",
+        "evidence_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 55,
+        "confidence_band": "MEDIUM",
+        "source_ids": [
+          "SRC-MENDIX-BNL-MEETUP-2023"
+        ],
+        "data_classification": "INTERNAL_CONFIDENTIAL",
+        "notes": "2023 event evidence only — do not treat as confirmed current in 2026 without separate verification."
+      },
+      {
+        "stakeholder_id": "STK-GINO-RAMCHARAN",
+        "full_name": "Gino Ramcharan",
+        "title": "Manager Process & Systems",
+        "department_or_cluster": "Process & Systems",
+        "seniority": "MANAGER",
+        "current_status": "ACTIVE",
+        "mandate_summary": "Potential process route for product-data / Mendix / STEP process ownership; scope to validate.",
+        "linkedin_url": "",
+        "evidence_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 55,
+        "confidence_band": "MEDIUM",
+        "source_ids": [
+          "SRC-ACTION-STAKEHOLDER-MAP"
+        ],
+        "data_classification": "INTERNAL_CONFIDENTIAL",
+        "notes": ""
+      },
+      {
+        "stakeholder_id": "STK-INGRID-CAMPMAN",
+        "full_name": "Ingrid Campman",
+        "title": "IT Supplier Manager",
+        "department_or_cluster": "Technology Procurement",
+        "seniority": "MANAGER",
+        "current_status": "ACTIVE",
+        "mandate_summary": "IT supplier management; provider and sourcing discovery route.",
+        "linkedin_url": "",
+        "evidence_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 65,
+        "confidence_band": "MEDIUM",
+        "source_ids": [
+          "SRC-ACTION-STAKEHOLDER-MAP"
+        ],
+        "data_classification": "INTERNAL_CONFIDENTIAL",
+        "notes": ""
+      },
+      {
+        "stakeholder_id": "STK-COMMERCIAL-PROCESS-TEAM",
+        "full_name": "Commercial Process Team",
+        "title": "Commercial Process Team",
+        "department_or_cluster": "Commercial / Process & Systems",
+        "seniority": "TEAM",
+        "current_status": "ACTIVE",
+        "mandate_summary": "Organisational team context named in Action's Process Expert Commerce vacancy; not a named individual, no personal-privacy exposure.",
+        "linkedin_url": "",
+        "evidence_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 55,
+        "confidence_band": "MEDIUM",
+        "source_ids": [
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE"
+        ],
+        "data_classification": "INTERNAL_CONFIDENTIAL",
+        "notes": "Team-level organisational context only; do not infer a named owner from this record."
       }
     ],
     "ownership_links": [
@@ -30609,6 +31343,119 @@
           "SRC-ACTION-STAKEHOLDER-MAP"
         ],
         "notes": ""
+      },
+      {
+        "ownership_link_id": "OWN-0097",
+        "stakeholder_id": "STK-RICHARD-LENDVAI",
+        "object_type": "COMPONENT",
+        "object_id": "CMP-STEP-MDM",
+        "owner_role": "TECHNOLOGY_OWNER_OR_MANAGER",
+        "evidence_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 65,
+        "confidence_band": "MEDIUM",
+        "source_ids": [
+          "SRC-ACTION-STAKEHOLDER-MAP",
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE"
+        ],
+        "notes": "Working scope hypothesis from role title (Head of Product Data Management), not a certified RACI."
+      },
+      {
+        "ownership_link_id": "OWN-0098",
+        "stakeholder_id": "STK-RICHARD-LENDVAI",
+        "object_type": "COMPONENT",
+        "object_id": "CMP-MENDIX",
+        "owner_role": "APPLICATION_SME",
+        "evidence_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 60,
+        "confidence_band": "MEDIUM",
+        "source_ids": [
+          "SRC-MENDIX-BNL-MEETUP-2023"
+        ],
+        "notes": "Publicly announced as a customer speaker at the 2023 Mendix low-code journey event."
+      },
+      {
+        "ownership_link_id": "OWN-0099",
+        "stakeholder_id": "STK-PAUL-BAKKER",
+        "object_type": "COMPONENT",
+        "object_id": "CMP-MENDIX",
+        "owner_role": "SOLUTION_ARCHITECT_GATE",
+        "evidence_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 55,
+        "confidence_band": "MEDIUM",
+        "source_ids": [
+          "SRC-ACTION-STAKEHOLDER-MAP"
+        ],
+        "notes": "Working scope hypothesis from role title (Solution Architect — Marketing & Format / Customer Platforms)."
+      },
+      {
+        "ownership_link_id": "OWN-0100",
+        "stakeholder_id": "STK-GINO-RAMCHARAN",
+        "object_type": "COMPONENT",
+        "object_id": "CMP-STEP-MDM",
+        "owner_role": "PROCESS_OWNER_OR_INFLUENCER",
+        "evidence_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 45,
+        "confidence_band": "LOW",
+        "source_ids": [
+          "SRC-ACTION-STAKEHOLDER-MAP"
+        ],
+        "notes": "Potential process route from role title (Manager Process & Systems) only; scope not validated."
+      },
+      {
+        "ownership_link_id": "OWN-0101",
+        "stakeholder_id": "STK-COMMERCIAL-PROCESS-TEAM",
+        "object_type": "COMPONENT",
+        "object_id": "CMP-STEP-MDM",
+        "owner_role": "ORGANISATIONAL_CONTEXT",
+        "evidence_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 50,
+        "confidence_band": "MEDIUM",
+        "source_ids": [
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE"
+        ],
+        "notes": "Team-level context from the vacancy naming S/4HANA, Mendix and STEP as hands-on systems; not a formal ownership record."
+      },
+      {
+        "ownership_link_id": "OWN-0102",
+        "stakeholder_id": "STK-PATRICK-WERKMAN",
+        "object_type": "COMPONENT",
+        "object_id": "CMP-MENDIX",
+        "owner_role": "REFERENCE_SPEAKER",
+        "evidence_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 40,
+        "confidence_band": "LOW",
+        "source_ids": [
+          "SRC-MENDIX-BNL-MEETUP-2023"
+        ],
+        "notes": "2023 event evidence only — spoke publicly about Action's low-code journey; current role and Mendix involvement not separately verified."
+      },
+      {
+        "ownership_link_id": "OWN-0103",
+        "stakeholder_id": "STK-INGRID-CAMPMAN",
+        "object_type": "COMPONENT",
+        "object_id": "CMP-MANAGED-SERVICE-PARTNER",
+        "owner_role": "SUPPLIER_MANAGEMENT_OWNER_OR_INFLUENCER",
+        "evidence_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 60,
+        "confidence_band": "MEDIUM",
+        "source_ids": [
+          "SRC-ACTION-STAKEHOLDER-MAP"
+        ],
+        "notes": ""
+      },
+      {
+        "ownership_link_id": "OWN-0104",
+        "stakeholder_id": "STK-INGRID-CAMPMAN",
+        "object_type": "DOMAIN",
+        "object_id": "DOM-PARTNERS",
+        "owner_role": "SUPPLIER_MANAGEMENT_OWNER_OR_INFLUENCER",
+        "evidence_status": "WORKING_HYPOTHESIS",
+        "confidence_score": 60,
+        "confidence_band": "MEDIUM",
+        "source_ids": [
+          "SRC-ACTION-STAKEHOLDER-MAP"
+        ],
+        "notes": ""
       }
     ],
     "cgi_relationships": [
@@ -31316,7 +32163,7 @@
         "current_hypothesis": "Unknown. Do not infer a vendor from capability labels or technical proximity.",
         "priority": "P0",
         "impact_area": "HIGH",
-        "gap_status": "OPEN",
+        "gap_status": "RESOLVED",
         "research_route": "Warm product-data route",
         "target_stakeholders_or_sources": "Richard Lendvai; Paul Bakker",
         "evidence_needed": "Product-data architecture, system screenshots, API endpoints, vendor contract",
@@ -31335,10 +32182,12 @@
           "EDGE-0076"
         ],
         "source_ids": [
-          "SRC-ACTION-JOB-COMMERCE"
+          "SRC-ACTION-JOB-COMMERCE",
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE",
+          "SRC-STIBO-STEP-PLATFORM"
         ],
-        "resolution_summary": "",
-        "resolved_component_id": ""
+        "resolution_summary": "Resolved to CMP-STEP-MDM: a first-party Action job posting (SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE) confirms hands-on use of STEP for Master Data Management. Vendor attribution to Stibo Systems is a product-identity inference (SRC-STIBO-STEP-PLATFORM), not a confirmed direct contract. Remaining questions carried forward as GAP-065/066/067.",
+        "resolved_component_id": "CMP-STEP-MDM"
       },
       {
         "gap_id": "GAP-021",
@@ -32510,7 +33359,7 @@
         "impact_area": "HIGH",
         "gap_status": "OPEN",
         "research_route": "Technology procurement + service management",
-        "target_stakeholders_or_sources": "Anouk de Ruiter; Karin Bergers; Martin van Dijk",
+        "target_stakeholders_or_sources": "Anouk de Ruiter; Ingrid Campman; Karin Bergers; Martin van Dijk; Duncan Schoen",
         "evidence_needed": "Contracts, supplier roster, job descriptions, ServiceNow vendor records",
         "recommended_next_action": "Execute Technology procurement + service management; record atomic claims and sources before changing the node from TO FIND.",
         "research_owner": "",
@@ -32568,7 +33417,7 @@
         "impact_area": "HIGH",
         "gap_status": "OPEN",
         "research_route": "Technology procurement and vendor management scan",
-        "target_stakeholders_or_sources": "Anouk de Ruiter; platform owners; procurement excellence",
+        "target_stakeholders_or_sources": "Anouk de Ruiter; Ingrid Campman; Martin van Dijk; Duncan Schoen; platform owners; procurement excellence",
         "evidence_needed": "Owner confirmation, CMDB/application inventory, contract metadata, deployment matrix and architecture documentation.",
         "recommended_next_action": "Run Technology procurement and vendor management scan and attach evidence to component/edge records.",
         "research_owner": "",
@@ -32687,6 +33536,261 @@
         "linked_edge_ids": [],
         "source_ids": [
           "SRC-ACTION-ARCH-V04"
+        ],
+        "resolution_summary": "",
+        "resolved_component_id": ""
+      },
+      {
+        "gap_id": "GAP-065",
+        "gap_component_id": "CMP-STEP-MDM",
+        "domain_id": "DOM-ERP",
+        "gap_title": "STEP vs SAP S/4HANA master-data boundary",
+        "why_essential": "Determines which system is the true product/master-data system of record.",
+        "research_question": "Which master-data domains (product, supplier, location, pricing) sit in STEP versus SAP S/4HANA master-data scope?",
+        "current_hypothesis": "Unknown. Do not infer a split from capability labels alone.",
+        "priority": "P1",
+        "impact_area": "HIGH",
+        "gap_status": "OPEN",
+        "research_route": "Warm product-data route",
+        "target_stakeholders_or_sources": "",
+        "evidence_needed": "Product-data architecture diagram, master-data governance policy, system-of-record RACI.",
+        "recommended_next_action": "Execute warm product-data route; record atomic claims and sources before resolving.",
+        "research_owner": "",
+        "target_date": "",
+        "created_date": "2026-08-06",
+        "last_updated_date": "2026-08-06",
+        "linked_component_ids": [
+          "CMP-STEP-MDM",
+          "CMP-SAP-S4"
+        ],
+        "linked_edge_ids": [],
+        "source_ids": [
+          "SRC-ACTION-JOB-PROCESS-EXPERT-COMMERCE"
+        ],
+        "resolution_summary": "",
+        "resolved_component_id": ""
+      },
+      {
+        "gap_id": "GAP-066",
+        "gap_component_id": "CMP-MENDIX",
+        "domain_id": "DOM-ERP",
+        "gap_title": "Mendix role and support model around product data",
+        "why_essential": "Clarifies whether Mendix is a workflow layer around STEP/product data or a broader application platform.",
+        "research_question": "What is Mendix's role around STEP and product-data workflows? Which teams build and support Mendix apps? Is there a Centre of Excellence? Which external partner supports Mendix?",
+        "current_hypothesis": "Unknown. Do not infer an implementation partner from platform proximity.",
+        "priority": "P1",
+        "impact_area": "HIGH",
+        "gap_status": "OPEN",
+        "research_route": "Warm product-data route",
+        "target_stakeholders_or_sources": "",
+        "evidence_needed": "Mendix app portfolio list, CoE charter or team roster, partner contract reference.",
+        "recommended_next_action": "Execute warm product-data route; record atomic claims and sources before resolving.",
+        "research_owner": "",
+        "target_date": "",
+        "created_date": "2026-08-06",
+        "last_updated_date": "2026-08-06",
+        "linked_component_ids": [
+          "CMP-MENDIX"
+        ],
+        "linked_edge_ids": [],
+        "source_ids": [
+          "SRC-MENDIX-BNL-MEETUP-2023"
+        ],
+        "resolution_summary": "",
+        "resolved_component_id": ""
+      },
+      {
+        "gap_id": "GAP-067",
+        "gap_component_id": "CMP-STEP-MDM",
+        "domain_id": "DOM-ERP",
+        "gap_title": "Product-data syndication targets from STEP",
+        "why_essential": "Determines the real downstream data-flow footprint of the product-data platform.",
+        "research_question": "Which data is syndicated from STEP to Contentstack, Algolia, the webshop, the app, stores, SymphonyAI GOLD and the data platform? What is the onboarding workflow for new products and suppliers?",
+        "current_hypothesis": "Unknown. No syndication interface is confirmed yet.",
+        "priority": "P1",
+        "impact_area": "HIGH",
+        "gap_status": "OPEN",
+        "research_route": "Warm product-data route",
+        "target_stakeholders_or_sources": "",
+        "evidence_needed": "Integration interface list, data-flow diagram, onboarding runbook.",
+        "recommended_next_action": "Execute warm product-data route; record atomic claims and sources before resolving.",
+        "research_owner": "",
+        "target_date": "",
+        "created_date": "2026-08-06",
+        "last_updated_date": "2026-08-06",
+        "linked_component_ids": [
+          "CMP-STEP-MDM",
+          "CMP-CONTENTSTACK",
+          "CMP-ALGOLIA",
+          "CMP-SYMPHONY-GOLD"
+        ],
+        "linked_edge_ids": [],
+        "source_ids": [],
+        "resolution_summary": "",
+        "resolved_component_id": ""
+      },
+      {
+        "gap_id": "GAP-068",
+        "gap_component_id": "CMP-CHANNEL-WEB",
+        "domain_id": "DOM-PARTNERS",
+        "gap_title": "external digital development partners (Marketing & Format Technology)",
+        "why_essential": "Action confirms a multi-partner development sourcing model for digital/format technology, but no partner is named.",
+        "research_question": "Which external partners supply multidisciplinary development teams for Marketing & Format Technology?",
+        "current_hypothesis": "Unknown. Sourcing model confirmed; partner identity is not.",
+        "priority": "P1",
+        "impact_area": "HIGH",
+        "gap_status": "OPEN",
+        "research_route": "Warm provider-discovery route",
+        "target_stakeholders_or_sources": "Anouk de Ruiter; Ingrid Campman; Jorik Dopmeijer; Martin van Dijk",
+        "evidence_needed": "Contract reference, partner case study, procurement record.",
+        "recommended_next_action": "Execute provider-discovery route; record atomic claims and sources before naming any partner.",
+        "research_owner": "",
+        "target_date": "",
+        "created_date": "2026-08-06",
+        "last_updated_date": "2026-08-06",
+        "linked_component_ids": [
+          "CMP-CHANNEL-WEB"
+        ],
+        "linked_edge_ids": [],
+        "source_ids": [
+          "SRC-ACTION-JOB-MARKETING-FORMAT"
+        ],
+        "resolution_summary": "",
+        "resolved_component_id": ""
+      },
+      {
+        "gap_id": "GAP-069",
+        "gap_component_id": "CMP-MENDIX",
+        "domain_id": "DOM-PARTNERS",
+        "gap_title": "Mendix implementation / development / Centre-of-Excellence partner",
+        "why_essential": "Determines who builds and supports Action's Mendix applications.",
+        "research_question": "Which partner (if any) implements or supports Mendix apps for Action? Is there an internal Centre of Excellence instead?",
+        "current_hypothesis": "Unknown. Do not infer a partner from platform proximity.",
+        "priority": "P1",
+        "impact_area": "MEDIUM",
+        "gap_status": "OPEN",
+        "research_route": "Warm product-data route",
+        "target_stakeholders_or_sources": "Richard Lendvai; Paul Bakker; Anouk de Ruiter; Ingrid Campman",
+        "evidence_needed": "Partner case study, contract reference, internal team roster.",
+        "recommended_next_action": "Execute warm product-data route; record atomic claims and sources before naming any partner.",
+        "research_owner": "",
+        "target_date": "",
+        "created_date": "2026-08-06",
+        "last_updated_date": "2026-08-06",
+        "linked_component_ids": [
+          "CMP-MENDIX"
+        ],
+        "linked_edge_ids": [],
+        "source_ids": [],
+        "resolution_summary": "",
+        "resolved_component_id": ""
+      },
+      {
+        "gap_id": "GAP-070",
+        "gap_component_id": "CMP-STEP-MDM",
+        "domain_id": "DOM-PARTNERS",
+        "gap_title": "STEP / Stibo implementation and support partner",
+        "why_essential": "Determines who implements and runs STEP for Action, beyond the confirmed product usage.",
+        "research_question": "Which partner (if any) implemented or supports STEP for Action?",
+        "current_hypothesis": "Unknown. Action-Stibo direct contract is not confirmed either.",
+        "priority": "P1",
+        "impact_area": "MEDIUM",
+        "gap_status": "OPEN",
+        "research_route": "Warm product-data route",
+        "target_stakeholders_or_sources": "Richard Lendvai; Anouk de Ruiter; Ingrid Campman",
+        "evidence_needed": "Partner case study, contract reference.",
+        "recommended_next_action": "Execute warm product-data route; record atomic claims and sources before naming any partner.",
+        "research_owner": "",
+        "target_date": "",
+        "created_date": "2026-08-06",
+        "last_updated_date": "2026-08-06",
+        "linked_component_ids": [
+          "CMP-STEP-MDM"
+        ],
+        "linked_edge_ids": [],
+        "source_ids": [],
+        "resolution_summary": "",
+        "resolved_component_id": ""
+      },
+      {
+        "gap_id": "GAP-071",
+        "gap_component_id": "CMP-SAP-S4",
+        "domain_id": "DOM-PARTNERS",
+        "gap_title": "SAP offshore managed-service partner",
+        "why_essential": "Determines who runs and supports the SAP landscape day to day.",
+        "research_question": "Which offshore or onshore MSP (if any) supports Action's SAP S/4HANA landscape?",
+        "current_hypothesis": "Unknown.",
+        "priority": "P1",
+        "impact_area": "HIGH",
+        "gap_status": "OPEN",
+        "research_route": "Warm provider-discovery route",
+        "target_stakeholders_or_sources": "Joep Groen; Anouk de Ruiter; Ingrid Campman; Martin van Dijk",
+        "evidence_needed": "Contract reference, support-desk branding, procurement record.",
+        "recommended_next_action": "Execute provider-discovery route; record atomic claims and sources before naming any partner.",
+        "research_owner": "",
+        "target_date": "",
+        "created_date": "2026-08-06",
+        "last_updated_date": "2026-08-06",
+        "linked_component_ids": [
+          "CMP-SAP-S4"
+        ],
+        "linked_edge_ids": [],
+        "source_ids": [],
+        "resolution_summary": "",
+        "resolved_component_id": ""
+      },
+      {
+        "gap_id": "GAP-072",
+        "gap_component_id": "CMP-SERVICENOW",
+        "domain_id": "DOM-PARTNERS",
+        "gap_title": "ServiceNow implementation and run partner",
+        "why_essential": "Determines who implemented and who runs the ServiceNow platform day to day.",
+        "research_question": "Which partner (if any) implemented or currently runs Action's ServiceNow platform?",
+        "current_hypothesis": "Unknown.",
+        "priority": "P2",
+        "impact_area": "MEDIUM",
+        "gap_status": "OPEN",
+        "research_route": "Warm provider-discovery route",
+        "target_stakeholders_or_sources": "Karin Bergers; Ingrid Campman; Anouk de Ruiter",
+        "evidence_needed": "Contract reference, partner case study.",
+        "recommended_next_action": "Execute provider-discovery route; record atomic claims and sources before naming any partner.",
+        "research_owner": "",
+        "target_date": "",
+        "created_date": "2026-08-06",
+        "last_updated_date": "2026-08-06",
+        "linked_component_ids": [
+          "CMP-SERVICENOW"
+        ],
+        "linked_edge_ids": [],
+        "source_ids": [],
+        "resolution_summary": "",
+        "resolved_component_id": ""
+      },
+      {
+        "gap_id": "GAP-073",
+        "gap_component_id": "CMP-RIFF",
+        "domain_id": "DOM-PARTNERS",
+        "gap_title": "contact-centre platform and telephony provider behind RIFF",
+        "why_essential": "RIFF's customer-contact service relationship is confirmed, but the underlying technology stack is not.",
+        "research_question": "Which contact-centre platform and telephony/CCaaS provider does RIFF operate on for Action?",
+        "current_hypothesis": "Unknown.",
+        "priority": "P2",
+        "impact_area": "MEDIUM",
+        "gap_status": "OPEN",
+        "research_route": "Warm provider-discovery route",
+        "target_stakeholders_or_sources": "Anouk de Ruiter; Ingrid Campman; Duncan Schoen",
+        "evidence_needed": "RIFF technology stack disclosure, vendor case study, technical observation.",
+        "recommended_next_action": "Execute provider-discovery route; record atomic claims and sources before naming any platform.",
+        "research_owner": "",
+        "target_date": "",
+        "created_date": "2026-08-06",
+        "last_updated_date": "2026-08-06",
+        "linked_component_ids": [
+          "CMP-RIFF"
+        ],
+        "linked_edge_ids": [],
+        "source_ids": [
+          "SRC-RIFF-ACTION"
         ],
         "resolution_summary": "",
         "resolved_component_id": ""
@@ -33652,6 +34756,141 @@
         "new_source_ids": [],
         "created_date": "2026-08-05",
         "updated_date": "2026-08-05"
+      },
+      {
+        "task_id": "TASK-065",
+        "gap_id": "GAP-065",
+        "task_title": "Research: STEP vs SAP S/4HANA master-data boundary",
+        "task_type": "DISCOVERY_AND_VALIDATION",
+        "status": "BACKLOG",
+        "priority": "P1",
+        "assigned_to": "",
+        "next_action": "Execute warm product-data route; record atomic claims and sources before changing status.",
+        "target_date": "",
+        "result_summary": "",
+        "new_source_ids": [],
+        "created_date": "2026-08-06",
+        "updated_date": "2026-08-06"
+      },
+      {
+        "task_id": "TASK-066",
+        "gap_id": "GAP-066",
+        "task_title": "Research: Mendix role and support model around product data",
+        "task_type": "DISCOVERY_AND_VALIDATION",
+        "status": "BACKLOG",
+        "priority": "P1",
+        "assigned_to": "",
+        "next_action": "Execute warm product-data route; record atomic claims and sources before changing status.",
+        "target_date": "",
+        "result_summary": "",
+        "new_source_ids": [],
+        "created_date": "2026-08-06",
+        "updated_date": "2026-08-06"
+      },
+      {
+        "task_id": "TASK-067",
+        "gap_id": "GAP-067",
+        "task_title": "Research: product-data syndication targets from STEP",
+        "task_type": "DISCOVERY_AND_VALIDATION",
+        "status": "BACKLOG",
+        "priority": "P1",
+        "assigned_to": "",
+        "next_action": "Execute warm product-data route; record atomic claims and sources before changing status.",
+        "target_date": "",
+        "result_summary": "",
+        "new_source_ids": [],
+        "created_date": "2026-08-06",
+        "updated_date": "2026-08-06"
+      },
+      {
+        "task_id": "TASK-068",
+        "gap_id": "GAP-068",
+        "task_title": "Research: external digital development partners (Marketing & Format Technology)",
+        "task_type": "DISCOVERY_AND_VALIDATION",
+        "status": "BACKLOG",
+        "priority": "P1",
+        "assigned_to": "",
+        "next_action": "Execute provider-discovery route; record atomic claims and sources before naming any partner.",
+        "target_date": "",
+        "result_summary": "",
+        "new_source_ids": [],
+        "created_date": "2026-08-06",
+        "updated_date": "2026-08-06"
+      },
+      {
+        "task_id": "TASK-069",
+        "gap_id": "GAP-069",
+        "task_title": "Research: Mendix implementation / development / Centre-of-Excellence partner",
+        "task_type": "DISCOVERY_AND_VALIDATION",
+        "status": "BACKLOG",
+        "priority": "P1",
+        "assigned_to": "",
+        "next_action": "Execute warm product-data route; record atomic claims and sources before naming any partner.",
+        "target_date": "",
+        "result_summary": "",
+        "new_source_ids": [],
+        "created_date": "2026-08-06",
+        "updated_date": "2026-08-06"
+      },
+      {
+        "task_id": "TASK-070",
+        "gap_id": "GAP-070",
+        "task_title": "Research: STEP / Stibo implementation and support partner",
+        "task_type": "DISCOVERY_AND_VALIDATION",
+        "status": "BACKLOG",
+        "priority": "P1",
+        "assigned_to": "",
+        "next_action": "Execute warm product-data route; record atomic claims and sources before naming any partner.",
+        "target_date": "",
+        "result_summary": "",
+        "new_source_ids": [],
+        "created_date": "2026-08-06",
+        "updated_date": "2026-08-06"
+      },
+      {
+        "task_id": "TASK-071",
+        "gap_id": "GAP-071",
+        "task_title": "Research: SAP offshore managed-service partner",
+        "task_type": "DISCOVERY_AND_VALIDATION",
+        "status": "BACKLOG",
+        "priority": "P1",
+        "assigned_to": "",
+        "next_action": "Execute provider-discovery route; record atomic claims and sources before naming any partner.",
+        "target_date": "",
+        "result_summary": "",
+        "new_source_ids": [],
+        "created_date": "2026-08-06",
+        "updated_date": "2026-08-06"
+      },
+      {
+        "task_id": "TASK-072",
+        "gap_id": "GAP-072",
+        "task_title": "Research: ServiceNow implementation and run partner",
+        "task_type": "DISCOVERY_AND_VALIDATION",
+        "status": "BACKLOG",
+        "priority": "P2",
+        "assigned_to": "",
+        "next_action": "Execute provider-discovery route; record atomic claims and sources before naming any partner.",
+        "target_date": "",
+        "result_summary": "",
+        "new_source_ids": [],
+        "created_date": "2026-08-06",
+        "updated_date": "2026-08-06"
+      },
+      {
+        "task_id": "TASK-073",
+        "gap_id": "GAP-073",
+        "task_title": "Research: contact-centre platform and telephony provider behind RIFF",
+        "task_type": "DISCOVERY_AND_VALIDATION",
+        "status": "BACKLOG",
+        "priority": "P2",
+        "assigned_to": "",
+        "next_action": "Execute provider-discovery route; record atomic claims and sources before naming any platform.",
+        "target_date": "",
+        "result_summary": "",
+        "new_source_ids": [],
+        "created_date": "2026-08-06",
+        "updated_date": "2026-08-06"
       }
     ],
     "architecture_views": [
