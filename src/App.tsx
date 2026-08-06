@@ -7,6 +7,7 @@ import { SuppliersPage } from '@/pages/SuppliersPage';
 import { EvidencePage } from '@/pages/EvidencePage';
 import { ToFindPage } from '@/pages/ToFindPage';
 import { ResearchPage } from '@/pages/ResearchPage';
+import { ProvidersPage } from '@/pages/ProvidersPage';
 import { AuthProvider } from '@/auth/AuthContext';
 import { SignInPage } from '@/auth/SignInPage';
 import { ProtectedRoute } from '@/auth/ProtectedRoute';
@@ -21,6 +22,7 @@ export default function App() {
           <Route element={<AppShell />}>
             <Route index element={<Navigate to="/architecture" replace />} />
             <Route path="architecture" element={<ArchitecturePage />} />
+            <Route path="architecture/providers" element={<ProvidersPage />} />
             <Route path="architecture/:domain" element={<DomainDeepDivePage />} />
             <Route path="systems" element={<SystemsPage />} />
             <Route path="systems/:componentId" element={<SystemsPage />} />

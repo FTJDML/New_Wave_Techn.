@@ -1,0 +1,148 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fcfcfa;
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 24px 40px;
+}
+
+.section {
+  margin-bottom: 28px;
+}
+
+.sectionTitle {
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-muted);
+  margin: 0 0 12px;
+}
+
+.sectionTitleGap {
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-gap-border);
+  margin: 0 0 6px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  border: 1px solid var(--color-card-border);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 14px 16px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.roleBadge {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-status-target);
+  background: rgba(36, 97, 192, 0.1);
+  border-radius: 4px;
+  padding: 3px 7px;
+  margin-bottom: 8px;
+}
+
+.cardMeta {
+  font-size: 12px;
+  color: var(--color-ink-muted);
+  margin: 4px 0;
+  line-height: 1.5;
+}
+
+.statusDot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.openQuestions {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--color-ink-muted);
+  margin: 6px 0 0;
+}
+
+.gapIntro {
+  font-size: 12.5px;
+  color: var(--color-ink-muted);
+  max-width: 780px;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.gapList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gapItem {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  border: 1px dashed var(--color-gap-border);
+  background: var(--color-gap-bg);
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.gapItem:hover {
+  background: #ffe8e8;
+}
+
+.gapPriority {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 1px 7px;
+  flex-shrink: 0;
+}
+
+.gapTitle {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-ink);
+  flex-shrink: 0;
+}
+
+.gapQuestion {
+  font-size: 12px;
+  color: var(--color-ink-muted);
+}

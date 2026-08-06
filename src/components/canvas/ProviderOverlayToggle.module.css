@@ -1,0 +1,39 @@
+.toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid var(--color-card-border);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-ink);
+  cursor: pointer;
+  z-index: 36;
+}
+
+.toggle:hover {
+  background: var(--color-group-bg);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--color-status-target);
+  outline-offset: -2px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-gap-border);
+  flex-shrink: 0;
+}
+
+.toggle[aria-pressed='true'] .dot {
+  background: var(--color-status-current);
+}

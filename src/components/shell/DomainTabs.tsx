@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './DomainTabs.module.css';
 
-export type DomainTabKey = 'total' | 'store' | 'digital' | 'erp-supply' | 'data' | 'people-service' | 'foundation';
+export type DomainTabKey = 'total' | 'store' | 'digital' | 'erp-supply' | 'data' | 'people-service' | 'foundation' | 'providers';
 
 const TABS: ReadonlyArray<{ key: DomainTabKey; to: string; label: string }> = [
   { key: 'total', to: '/architecture', label: 'Total Architecture' },
@@ -11,6 +11,7 @@ const TABS: ReadonlyArray<{ key: DomainTabKey; to: string; label: string }> = [
   { key: 'data', to: '/architecture/data', label: 'Data & Intelligence' },
   { key: 'people-service', to: '/architecture/people-service', label: 'People & Service' },
   { key: 'foundation', to: '/architecture/foundation', label: 'Foundation' },
+  { key: 'providers', to: '/architecture/providers', label: 'Providers & Partners' },
 ];
 
 export function DomainTabs({ current }: { readonly current: DomainTabKey }) {

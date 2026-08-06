@@ -1,12 +1,15 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { toPng } from 'html-to-image';
 import type { ArchitectureView } from '@/types/architecture';
 import { useCamera } from '@/hooks/useCamera';
 import { useHighlight } from '@/hooks/useHighlight';
+import { buildProviderOverlay } from '@/lib/providersView';
 import { GroupLayer } from './GroupLayer';
 import { EdgeLayer } from './EdgeLayer';
 import { NodeLayer } from './NodeLayer';
 import { ZoomControls } from '@/components/shell/ZoomControls';
+import { ProviderOverlayToggle } from './ProviderOverlayToggle';
+import { ProviderOverlayPanel } from './ProviderOverlayPanel';
 import styles from './ArchitectureCanvas.module.css';
 
 interface ArchitectureCanvasProps {
@@ -26,6 +29,8 @@ export function ArchitectureCanvas({ view, onSelectNode, exportFileName = 'actio
     maxScale: canvas.maxScale,
   });
   const highlight = useHighlight(edges);
+  const [showProviders, setShowProviders] = useState(false);
+  const providerOverlay = buildProviderOverlay(view);
 
   const exportPng = useCallback(async () => {
     const layer = layerRef.current;
@@ -72,7 +77,7 @@ export function ArchitectureCanvas({ view, onSelectNode, exportFileName = 'actio
           edges={edges}
           width={canvas.width}
           height={canvas.height}
-          isEdgeDimmed={highlight.isEdgeDimmed}
+          isEdgeDimmed={(id) => showProviders || highlight.isEdgeDimmed(id)}
           isEdgeEmphasised={highlight.isEdgeEmphasised}
         />
         <NodeLayer
@@ -84,6 +89,8 @@ export function ArchitectureCanvas({ view, onSelectNode, exportFileName = 'actio
         />
       </div>
       <ZoomControls onZoomIn={zoomIn} onZoomOut={zoomOut} onReset={reset} onExportPng={exportPng} />
+      <ProviderOverlayToggle active={showProviders} onToggle={() => setShowProviders((v) => !v)} />
+      {showProviders ? <ProviderOverlayPanel overlay={providerOverlay} /> : null}
     </div>
   );
 }
