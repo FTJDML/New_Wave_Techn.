@@ -9,6 +9,8 @@ interface AppHeaderProps {
 const LEGEND: ReadonlyArray<{ label: string; color: string }> = [
   { label: 'Confirmed current', color: 'var(--color-status-current)' },
   { label: 'Observed / inferred', color: 'var(--color-status-observed)' },
+  { label: 'Visually confirmed', color: 'var(--color-status-observed)' },
+  { label: 'Capability confirmed — vendor unknown', color: 'var(--color-status-observed)' },
   { label: 'Transition', color: 'var(--color-status-transition)' },
   { label: 'Target', color: 'var(--color-status-target)' },
   { label: 'Legacy / historical', color: 'var(--color-status-legacy)' },

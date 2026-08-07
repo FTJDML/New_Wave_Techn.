@@ -5,6 +5,8 @@ const DEPLOYMENT_COLORS: Readonly<Record<string, string>> = {
   LEGACY: 'var(--color-status-legacy)',
   HISTORICAL: 'var(--color-status-legacy)',
   SUSPECTED: 'var(--color-status-observed)',
+  VISUALLY_CONFIRMED: 'var(--color-status-observed)',
+  CAPABILITY_CONFIRMED: 'var(--color-status-observed)',
   UNKNOWN: 'var(--color-gap-border)',
 };
 

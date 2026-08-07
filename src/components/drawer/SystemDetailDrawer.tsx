@@ -85,6 +85,12 @@ export function SystemDetailDrawer({ component, onClose, onSelectComponent }: Sy
           {component.criticality && component.criticality !== 'UNKNOWN' ? <span className={styles.badge}>{humanize(component.criticality)} criticality</span> : null}
         </div>
 
+        {component.deployment_status === 'HISTORICAL' ? (
+          <p className={styles.historicalCaveat}>
+            Public evidence confirms implementation, but not the current 2026 estate or contract scope.
+          </p>
+        ) : null}
+
         <p className={styles.sectionTitle}>Overview</p>
         <div className={styles.factGrid}>
           <Fact label="Architecture role" value={humanize(component.architecture_role)} />
@@ -99,6 +105,8 @@ export function SystemDetailDrawer({ component, onClose, onSelectComponent }: Sy
           <Fact label="Geography" value={humanize(component.geography_scope)} />
           <Fact label="User groups" value={component.user_groups} />
           <Fact label="First known year" value={String(component.first_known_year || '')} />
+          <Fact label="Confidence" value={component.confidence_band ? `${humanize(component.confidence_band)} (${component.confidence_score}/100)` : ''} />
+          <Fact label="Last verified" value={component.last_verified_date} />
         </div>
 
         {component.relationship_start_year || duration || component.contract_directness !== 'UNKNOWN' ? (

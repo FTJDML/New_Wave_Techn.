@@ -13,6 +13,8 @@ const STATUS_META: Readonly<Record<DeploymentStatus, StatusMeta>> = {
   legacy: { label: 'Legacy', color: 'var(--color-status-legacy)' },
   historical: { label: 'Historical', color: 'var(--color-status-legacy)' },
   suspected: { label: 'Suspected', color: 'var(--color-status-observed)' },
+  visually_confirmed: { label: 'Visually confirmed', color: 'var(--color-status-observed)' },
+  capability_confirmed: { label: 'Capability confirmed', color: 'var(--color-status-observed)' },
   unknown: { label: 'Unknown', color: 'var(--color-gap-border)' },
 };
 

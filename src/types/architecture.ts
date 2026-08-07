@@ -10,6 +10,8 @@ export type DeploymentStatus =
   | 'legacy'
   | 'historical'
   | 'suspected'
+  | 'visually_confirmed'
+  | 'capability_confirmed'
   | 'unknown';
 
 export type EvidenceStatus =
