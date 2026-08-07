@@ -21,7 +21,7 @@ export interface ProviderSection {
 
 const SECTIONS: ReadonlyArray<{ title: string; vendorIds: readonly string[] }> = [
   { title: 'Store, checkout and rollout', vendorIds: ['VEN-CTAC', 'VEN-PANOSTON', 'VEN-4POS', 'VEN-ELO'] },
-  { title: 'Cloud and enterprise delivery', vendorIds: ['VEN-CAPGEMINI', 'VEN-TCS'] },
+  { title: 'Cloud and enterprise delivery', vendorIds: ['VEN-CAPGEMINI', 'VEN-TCS', 'VEN-WWWIFI'] },
   { title: 'Digital, product data and content', vendorIds: ['VEN-MENDIX', 'VEN-STIBO', 'VEN-SQUADRA', 'VEN-NEXTAI', 'VEN-RETAILSONAR'] },
   { title: 'Customer operations', vendorIds: ['VEN-RIFF'] },
   { title: 'Supply chain and logistics', vendorIds: ['VEN-WUUNDER', 'VEN-DAIKIN'] },

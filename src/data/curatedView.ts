@@ -64,6 +64,9 @@ const DEEP_DIVE_LOGO_ADDITIONS: Readonly<Record<string, LogoDefinition>> = {
   'VEN-ZEBRA': { strategy: 'wordmark', text: 'Zebra' },
   'VEN-CHECKPOINT': { strategy: 'wordmark', text: 'Checkpoint' },
   'VEN-CENTRIC': { strategy: 'wordmark', text: 'Centric' },
+  'VEN-SAI360': { strategy: 'wordmark', text: 'SAI360' },
+  'VEN-ORTEC': { strategy: 'wordmark', text: 'ORTEC' },
+  'VEN-WWWIFI': { strategy: 'wordmark', text: 'World Wide WiFi Experts' },
 };
 
 function applyEdgeOverrides(edges: readonly ArchitectureViewEdge[]): readonly ArchitectureViewEdge[] {
