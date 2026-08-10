@@ -1,0 +1,437 @@
+{
+  "schema_version": "1.0",
+  "generated": "2026-08-07",
+  "description": "Cross-reference between the Action Stakeholder Intelligence app's technology domains and the Action Architecture Workbench's domains/capabilities/canvas nodes. This file is intentionally duplicated verbatim in both apps' repos rather than shared at runtime -- the two apps stay independently deployable. Each app renders an outbound deep link using its own copy; neither app reads the other's data at runtime. Update both copies together when either taxonomy changes.",
+  "usage": {
+    "workbench_side": "src/lib/stakeholderCrosswalk.ts resolves a component/node to its stakeholder_domain_id(s) and links out to `${VITE_STAKEHOLDER_APP_URL}/technology?domain=<id>`.",
+    "stakeholder_side": "src/lib/techCrosswalk.ts resolves a domain_id to its workbench_view_id/workbench_node_ids and links out to `${VITE_WORKBENCH_APP_URL}/architecture/<workbench_view_id>?node=<id>` -- workbench_view_id is the URL ROUTE SLUG (e.g. 'store', 'data', 'foundation'), which is NOT the same as the ArchitectureView.id used inside deepDiveViews.ts (e.g. 'store-checkout', 'data-intelligence', 'foundation-security'). An empty workbench_view_id means the Total Architecture overview: `${VITE_WORKBENCH_APP_URL}/architecture` (no node param, no slug). 'providers' means the Providers & Partners page: `${VITE_WORKBENCH_APP_URL}/architecture/providers` (no node param -- it's a card grid, not a canvas view).",
+    "neither_app_deployed_yet": "Both env vars are unset by default -- the link renders in a visibly-disabled state (see each app's crosswalk lib) rather than pointing at a guessed URL. Fill in VITE_STAKEHOLDER_APP_URL / VITE_WORKBENCH_APP_URL once each app has a real deployment URL."
+  },
+  "mappings": [
+    {
+      "stakeholder_domain_id": "domain-pos",
+      "stakeholder_domain_name": "POS & Checkout",
+      "workbench_domain_id": "DOM-STORE",
+      "workbench_capability_ids": [
+        "CAP-STORE-POS"
+      ],
+      "workbench_view_id": "store",
+      "workbench_node_ids": [
+        "sc-ctac-xv",
+        "sc-target-pos"
+      ],
+      "mapping_confidence": "high",
+      "notes": ""
+    },
+    {
+      "stakeholder_domain_id": "domain-payments",
+      "stakeholder_domain_name": "Payments",
+      "workbench_domain_id": "DOM-PAYMENTS",
+      "workbench_capability_ids": [
+        "CAP-PAY-PROCESSING",
+        "CAP-PAY-TERMINALS"
+      ],
+      "workbench_view_id": "store",
+      "workbench_node_ids": [
+        "sc-adyen",
+        "sc-gap-payment-terminal"
+      ],
+      "mapping_confidence": "high",
+      "notes": ""
+    },
+    {
+      "stakeholder_domain_id": "domain-self-checkout",
+      "stakeholder_domain_name": "Self-checkout",
+      "workbench_domain_id": "DOM-STORE",
+      "workbench_capability_ids": [
+        "CAP-STORE-SCO"
+      ],
+      "workbench_view_id": "store",
+      "workbench_node_ids": [
+        "sc-sco-video-analytics",
+        "sc-zebra-scanning",
+        "sc-gap-sco-vision-edge"
+      ],
+      "mapping_confidence": "high",
+      "notes": ""
+    },
+    {
+      "stakeholder_domain_id": "domain-store-devices",
+      "stakeholder_domain_name": "Store devices & handhelds",
+      "workbench_domain_id": "DOM-STORE",
+      "workbench_capability_ids": [
+        "CAP-STORE-HARDWARE"
+      ],
+      "workbench_view_id": "store",
+      "workbench_node_ids": [
+        "sc-elo-touch",
+        "sc-zebra-scanning",
+        "sc-gap-pos-pc"
+      ],
+      "mapping_confidence": "medium",
+      "notes": "DC-side devices (scanners/printers/mobile computers) are a separate gap in the ERP & Supply view (es-gap-dc-devices) -- not included here since this domain is scoped to in-store devices."
+    },
+    {
+      "stakeholder_domain_id": "domain-store-network",
+      "stakeholder_domain_name": "Store connectivity & network",
+      "workbench_domain_id": "DOM-CLOUD",
+      "workbench_capability_ids": [
+        "CAP-NETWORK"
+      ],
+      "workbench_view_id": "foundation",
+      "workbench_node_ids": [
+        "fs-gap-sdwan",
+        "fs-gap-wifi"
+      ],
+      "mapping_confidence": "medium",
+      "notes": "Also see the World Wide WiFi Experts delivery-partner card (VEN-WWWIFI) on the Providers & Partners page -- a confirmed WLAN-survey engagement, not a canvas node."
+    },
+    {
+      "stakeholder_domain_id": "domain-store-support",
+      "stakeholder_domain_name": "Store support & service delivery",
+      "workbench_domain_id": "DOM-STORE",
+      "workbench_capability_ids": [
+        "CAP-STORE-ROLLOUT"
+      ],
+      "workbench_view_id": "store",
+      "workbench_node_ids": [
+        "sc-centric",
+        "sc-gap-itfieldservice"
+      ],
+      "mapping_confidence": "high",
+      "notes": ""
+    },
+    {
+      "stakeholder_domain_id": "domain-hr-tech",
+      "stakeholder_domain_name": "HR technology",
+      "workbench_domain_id": "DOM-PEOPLE",
+      "workbench_capability_ids": [
+        "CAP-HCM",
+        "CAP-PAYROLL",
+        "CAP-WFM"
+      ],
+      "workbench_view_id": "people-service",
+      "workbench_node_ids": [
+        "ps-successfactors",
+        "ps-ecp",
+        "ps-peopledoc",
+        "ps-kronos",
+        "ps-ukg-pro-wfm",
+        "ps-gap-hr-identity"
+      ],
+      "mapping_confidence": "high",
+      "notes": ""
+    },
+    {
+      "stakeholder_domain_id": "domain-real-estate-tech",
+      "stakeholder_domain_name": "Real Estate technology",
+      "workbench_domain_id": "DOM-FACILITY",
+      "workbench_capability_ids": [
+        "CAP-FACILITY"
+      ],
+      "workbench_view_id": "erp-supply",
+      "workbench_node_ids": [
+        "es-sap-refx"
+      ],
+      "mapping_confidence": "high",
+      "notes": "Planon (fs-planon, in the Foundation view) also sits in this domain -- see that view for the facilities-management side; the responsibility split between Planon and SAP RE-FX is not evidenced."
+    },
+    {
+      "stakeholder_domain_id": "domain-fraud-security",
+      "stakeholder_domain_name": "Fraud & security",
+      "workbench_domain_id": "DOM-STORE",
+      "workbench_capability_ids": [
+        "CAP-STORE-LP",
+        "CAP-SECURITY"
+      ],
+      "workbench_view_id": "store",
+      "workbench_node_ids": [
+        "sc-checkpoint-eas",
+        "sc-gap-cctv-vms"
+      ],
+      "mapping_confidence": "medium",
+      "notes": "Enterprise-level security gaps (SIEM/SOC, EDR/XDR, IAM/PAM) live in the Foundation view (fs-gap-siem-soc, fs-gap-edr-xdr, fs-gap-iam-pam) -- this domain spans both store-level loss prevention and enterprise security; both are worth checking."
+    },
+    {
+      "stakeholder_domain_id": "domain-cloud",
+      "stakeholder_domain_name": "Cloud & infrastructure",
+      "workbench_domain_id": "DOM-CLOUD",
+      "workbench_capability_ids": [
+        "CAP-CLOUD"
+      ],
+      "workbench_view_id": "foundation",
+      "workbench_node_ids": [
+        "fs-azure",
+        "fs-aws",
+        "fs-vercel",
+        "fs-fastly",
+        "fs-cloudflare",
+        "fs-m365"
+      ],
+      "mapping_confidence": "high",
+      "notes": ""
+    },
+    {
+      "stakeholder_domain_id": "domain-integration",
+      "stakeholder_domain_name": "Integration & APIs",
+      "workbench_domain_id": "DOM-INTEGRATION",
+      "workbench_capability_ids": [
+        "CAP-INTEGRATION"
+      ],
+      "workbench_view_id": "foundation",
+      "workbench_node_ids": [
+        "fs-gap-api-management",
+        "fs-gap-ipaas-esb",
+        "fs-gap-event-streaming",
+        "fs-gap-mft-batch"
+      ],
+      "mapping_confidence": "high",
+      "notes": "Entirely TO FIND on the Workbench side today -- no confirmed integration/API-management platform yet."
+    },
+    {
+      "stakeholder_domain_id": "domain-enterprise-architecture",
+      "stakeholder_domain_name": "Enterprise architecture",
+      "workbench_domain_id": "",
+      "workbench_capability_ids": [],
+      "workbench_view_id": "",
+      "workbench_node_ids": [],
+      "mapping_confidence": "loose",
+      "notes": "Cross-cutting function, not a specific system domain -- links to the Total Architecture overview rather than any single node."
+    },
+    {
+      "stakeholder_domain_id": "domain-it-operations",
+      "stakeholder_domain_name": "IT operations & ITSM",
+      "workbench_domain_id": "DOM-INTEGRATION",
+      "workbench_capability_ids": [
+        "CAP-ITSM"
+      ],
+      "workbench_view_id": "people-service",
+      "workbench_node_ids": [
+        "ps-servicenow",
+        "ps-sn-itsm",
+        "ps-sn-csm",
+        "ps-sn-cmdb",
+        "ps-gap-endpoint-mdm"
+      ],
+      "mapping_confidence": "high",
+      "notes": "ServiceNow is modelled in the People & Service view, not Foundation -- see PROJECT_HANDOFF.md for why."
+    },
+    {
+      "stakeholder_domain_id": "domain-digital-commerce",
+      "stakeholder_domain_name": "Digital commerce",
+      "workbench_domain_id": "DOM-DIGITAL",
+      "workbench_capability_ids": [
+        "CAP-ECOM-ENGINE",
+        "CAP-ECOM-OMS",
+        "CAP-DXP-CMS",
+        "CAP-DXP-FRONTEND"
+      ],
+      "workbench_view_id": "digital",
+      "workbench_node_ids": [
+        "dc-contentstack",
+        "dc-nextjs",
+        "dc-commerce-engine",
+        "dc-gap-oms",
+        "dc-gap-ecom-fulfilment",
+        "dc-gap-returns-orchestration"
+      ],
+      "mapping_confidence": "high",
+      "notes": ""
+    },
+    {
+      "stakeholder_domain_id": "domain-cx",
+      "stakeholder_domain_name": "Customer experience",
+      "workbench_domain_id": "DOM-DIGITAL",
+      "workbench_capability_ids": [
+        "CAP-CUSTOMER-FEEDBACK",
+        "CAP-DXP-SEARCH"
+      ],
+      "workbench_view_id": "digital",
+      "workbench_node_ids": [
+        "dc-algolia",
+        "dc-cookiebot",
+        "dc-gap-customer-identity"
+      ],
+      "mapping_confidence": "medium",
+      "notes": "Feedback-signal satellites (Hotjar, Mopinion, Q&A Retail, Uberall) sit in the Data & Customer Intelligence view's BI/feedback group, not here."
+    },
+    {
+      "stakeholder_domain_id": "domain-crm-loyalty",
+      "stakeholder_domain_name": "CRM & loyalty",
+      "workbench_domain_id": "DOM-MARTECH",
+      "workbench_capability_ids": [
+        "CAP-LOYALTY",
+        "CAP-CRM"
+      ],
+      "workbench_view_id": "digital",
+      "workbench_node_ids": [
+        "dc-salesforce-signal"
+      ],
+      "mapping_confidence": "loose",
+      "notes": "Loyalty is modelled as a module of Ctac XV (sc-ctac-xv, 'XV Omni Customer Loyalty') in the Store & Checkout view, not as its own node -- see that node's modules list. Salesforce's actual product/role at Action is unconfirmed."
+    },
+    {
+      "stakeholder_domain_id": "domain-product-data",
+      "stakeholder_domain_name": "Product data & PIM/MDM",
+      "workbench_domain_id": "DOM-ERP",
+      "workbench_capability_ids": [
+        "CAP-MDM"
+      ],
+      "workbench_view_id": "erp-supply",
+      "workbench_node_ids": [
+        "es-step-mdm",
+        "es-mendix",
+        "es-powertext"
+      ],
+      "mapping_confidence": "high",
+      "notes": "The same components also appear (downstream) in the Digital Experience view as dc-step-mdm/dc-mendix/dc-powertext."
+    },
+    {
+      "stakeholder_domain_id": "domain-data-platform",
+      "stakeholder_domain_name": "Data platform & engineering",
+      "workbench_domain_id": "DOM-DATA",
+      "workbench_capability_ids": [
+        "CAP-DATA-PLATFORM"
+      ],
+      "workbench_view_id": "data",
+      "workbench_node_ids": [
+        "di-databricks",
+        "di-azure",
+        "di-sap-bw",
+        "di-sap-datasphere",
+        "di-bigquery",
+        "di-gap-data-quality",
+        "di-gap-data-catalog",
+        "di-gap-master-data-hub",
+        "di-gap-event-streaming"
+      ],
+      "mapping_confidence": "high",
+      "notes": ""
+    },
+    {
+      "stakeholder_domain_id": "domain-analytics-ai",
+      "stakeholder_domain_name": "Analytics & AI",
+      "workbench_domain_id": "DOM-DATA",
+      "workbench_capability_ids": [
+        "CAP-BI",
+        "CAP-CUSTOMER-INTEL"
+      ],
+      "workbench_view_id": "data",
+      "workbench_node_ids": [
+        "di-power-bi",
+        "di-sap-sac",
+        "di-sap-bo",
+        "di-looker-studio",
+        "di-next-ai",
+        "di-gap-mlops"
+      ],
+      "mapping_confidence": "high",
+      "notes": ""
+    },
+    {
+      "stakeholder_domain_id": "domain-supply-chain-planning",
+      "stakeholder_domain_name": "Supply-chain planning",
+      "workbench_domain_id": "DOM-MERCH",
+      "workbench_capability_ids": [
+        "CAP-FORECAST",
+        "CAP-ALLOCATION",
+        "CAP-PRICING",
+        "CAP-LOCATION"
+      ],
+      "workbench_view_id": "erp-supply",
+      "workbench_node_ids": [
+        "es-anaplan",
+        "es-gap-target-planning",
+        "es-symphony-gold",
+        "es-tcs-optumera",
+        "es-gap-range-assortment",
+        "es-retailsonar"
+      ],
+      "mapping_confidence": "high",
+      "notes": ""
+    },
+    {
+      "stakeholder_domain_id": "domain-wms-tms",
+      "stakeholder_domain_name": "WMS/TMS & logistics",
+      "workbench_domain_id": "DOM-SUPPLY",
+      "workbench_capability_ids": [
+        "CAP-WMS",
+        "CAP-TMS",
+        "CAP-PARCEL",
+        "CAP-WA"
+      ],
+      "workbench_view_id": "erp-supply",
+      "workbench_node_ids": [
+        "es-sap-ewm",
+        "es-gap-wcs-wes",
+        "es-gap-mhe-robotics",
+        "es-gap-voice-picking",
+        "es-sap-tm",
+        "es-wuunder",
+        "es-ortec",
+        "es-gap-carrier-integration"
+      ],
+      "mapping_confidence": "high",
+      "notes": ""
+    },
+    {
+      "stakeholder_domain_id": "domain-sap",
+      "stakeholder_domain_name": "SAP & enterprise applications",
+      "workbench_domain_id": "DOM-ERP",
+      "workbench_capability_ids": [
+        "CAP-ERP"
+      ],
+      "workbench_view_id": "erp-supply",
+      "workbench_node_ids": [
+        "es-s4",
+        "es-car",
+        "es-ariba",
+        "es-business-network",
+        "es-sap-refx"
+      ],
+      "mapping_confidence": "high",
+      "notes": "SAP HR/analytics products (SuccessFactors, ECP, Analytics Cloud, BusinessObjects) sit in their own domains above (HR technology; Analytics & AI) rather than being repeated here."
+    },
+    {
+      "stakeholder_domain_id": "domain-tech-procurement",
+      "stakeholder_domain_name": "Technology procurement",
+      "workbench_domain_id": "DOM-PARTNERS",
+      "workbench_capability_ids": [
+        "CAP-PROCUREMENT"
+      ],
+      "workbench_view_id": "erp-supply",
+      "workbench_node_ids": [
+        "es-ariba",
+        "es-business-network"
+      ],
+      "mapping_confidence": "loose",
+      "notes": "Procurement-the-process (buying decisions, vendor selection) is better represented by the Providers & Partners page than by any single canvas node -- see domain-vendor-management below."
+    },
+    {
+      "stakeholder_domain_id": "domain-vendor-management",
+      "stakeholder_domain_name": "Vendor & supplier management",
+      "workbench_domain_id": "DOM-PARTNERS",
+      "workbench_capability_ids": [],
+      "workbench_view_id": "providers",
+      "workbench_node_ids": [],
+      "mapping_confidence": "medium",
+      "notes": "Links to the Providers & Partners page as a whole (a card grid, not a canvas view) rather than a specific node."
+    },
+    {
+      "stakeholder_domain_id": "domain-contingent-workforce",
+      "stakeholder_domain_name": "Contingent workforce",
+      "workbench_domain_id": "DOM-PEOPLE",
+      "workbench_capability_ids": [
+        "CAP-RECRUIT"
+      ],
+      "workbench_view_id": "people-service",
+      "workbench_node_ids": [
+        "ps-staffly",
+        "ps-erecruiter",
+        "ps-gap-ats"
+      ],
+      "mapping_confidence": "high",
+      "notes": ""
+    }
+  ]
+}

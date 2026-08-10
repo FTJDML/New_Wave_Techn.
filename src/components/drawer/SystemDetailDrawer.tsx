@@ -13,6 +13,7 @@ import {
   components,
 } from '@/data/fullCatalogue';
 import { getViewAppearances } from '@/data/viewIndex';
+import { getStakeholderDomainLinksForComponent } from '@/lib/stakeholderCrosswalk';
 import { mergedClaims, mergedSources } from '@/research/store';
 import { useResearchStoreVersion } from '@/research/useResearchStore';
 import { PromoteObservationForm } from '@/components/forms/PromoteObservationForm';
@@ -61,6 +62,7 @@ export function SystemDetailDrawer({ component, onClose, onSelectComponent }: Sy
   const gaps = getGapsForComponent(component.component_id);
   const duration = formatDuration(component.relationship_duration_years_json, component.relationship_start_precision);
   const viewAppearances = getViewAppearances(component.component_id);
+  const stakeholderLinks = getStakeholderDomainLinksForComponent(component.component_id);
 
   return (
     <>
@@ -137,6 +139,29 @@ export function SystemDetailDrawer({ component, onClose, onSelectComponent }: Sy
                   <Link className={styles.link} to={`${a.routePath}?node=${a.nodeId}`}>
                     {a.viewTitle}
                   </Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
+
+        {stakeholderLinks.length > 0 ? (
+          <>
+            <p className={styles.sectionTitle}>Stakeholders</p>
+            <ul className={styles.list}>
+              {stakeholderLinks.map((link) => (
+                <li key={link.domainId} className={styles.listItem}>
+                  {link.url ? (
+                    <a className={styles.link} href={link.url} target="_blank" rel="noreferrer">
+                      {link.domainName} — Stakeholder Intelligence ↗
+                    </a>
+                  ) : (
+                    <span className={styles.listItemTitle}>{link.domainName}</span>
+                  )}
+                  <div className={styles.listItemMeta}>
+                    {humanize(link.confidence)} mapping confidence
+                    {!link.url ? ' · link not configured (VITE_STAKEHOLDER_APP_URL)' : ''}
+                  </div>
                 </li>
               ))}
             </ul>
